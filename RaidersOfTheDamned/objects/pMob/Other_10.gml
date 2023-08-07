@@ -1,0 +1,3 @@
+/// @description  Died
+
+justDied = true;
