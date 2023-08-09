@@ -415,6 +415,7 @@
     {"id":{"name":"snWalk1","path":"sounds/snWalk1/snWalk1.yy",},},
     {"id":{"name":"spPlayerRollN","path":"sprites/spPlayerRollN/spPlayerRollN.yy",},},
     {"id":{"name":"spWormDogDie4","path":"sprites/spWormDogDie4/spWormDogDie4.yy",},},
+    {"id":{"name":"spDecorCorpse","path":"sprites/spDecorCorpse/spDecorCorpse.yy",},},
     {"id":{"name":"oUpgradeManager","path":"objects/oUpgradeManager/oUpgradeManager.yy",},},
     {"id":{"name":"spr_Aura_BlockPattern","path":"sprites/spr_Aura_BlockPattern/spr_Aura_BlockPattern.yy",},},
     {"id":{"name":"scOnRoll","path":"scripts/scOnRoll/scOnRoll.yy",},},

@@ -364,6 +364,7 @@
     {"name":"snWalk1","order":1,"path":"sounds/snWalk1/snWalk1.yy",},
     {"name":"spPlayerRollN","order":14,"path":"sprites/spPlayerRollN/spPlayerRollN.yy",},
     {"name":"spWormDogDie4","order":9,"path":"sprites/spWormDogDie4/spWormDogDie4.yy",},
+    {"name":"spDecorCorpse","order":25,"path":"sprites/spDecorCorpse/spDecorCorpse.yy",},
     {"name":"oUpgradeManager","order":30,"path":"objects/oUpgradeManager/oUpgradeManager.yy",},
     {"name":"spr_Aura_BlockPattern","order":1,"path":"sprites/spr_Aura_BlockPattern/spr_Aura_BlockPattern.yy",},
     {"name":"scOnRoll","order":4,"path":"scripts/scOnRoll/scOnRoll.yy",},

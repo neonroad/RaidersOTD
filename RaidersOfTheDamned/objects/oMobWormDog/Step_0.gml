@@ -55,7 +55,7 @@ else
 */
 
 target = instance_nearest(x,y, oPlayer);
-if(!instance_exists(target) || target.shootable_map[? SHOOTABLE_MAP.DEAD] || point_distance(x,y,target.x,target.y)>400){
+if(!instance_exists(target) || target.shootable_map[? SHOOTABLE_MAP.DEAD]){
 	instance_destroy();
 	exit;
 }
