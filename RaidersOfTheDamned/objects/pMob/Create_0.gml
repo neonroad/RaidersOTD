@@ -12,6 +12,7 @@ despawnTime = 100;
 spawned = false;
 justDied = false;
 invuln = false;
+shotgunHit = false;
 
 asym = false; //For drawing asymmetrical sprites
 

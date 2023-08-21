@@ -385,5 +385,5 @@ else
 	facing = -1;
 
 
-
+shotgunHit = false;
 

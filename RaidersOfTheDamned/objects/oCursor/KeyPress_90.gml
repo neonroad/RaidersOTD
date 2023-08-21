@@ -1,2 +1,2 @@
 /// @description  
-instance_create_depth(x,y,depth,oMobZombie);
+instance_create_depth(x,y,depth,oMobRockHead);

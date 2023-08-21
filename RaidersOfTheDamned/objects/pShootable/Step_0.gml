@@ -20,16 +20,16 @@ if(max_lifetime >= 1){
 
 if(crowdcontrol_cooldown > 0){
 	//Save state
-	if(control){
-		prevState = current_state;	
-	}
+	//if(control){
+	//	prevState = current_state;	
+	//}
 	control = false;
 }
 
 else{
 	//Restore state
-	if(!control && prevState != noone){
-		current_state = prevState;
-	}
+	//if(!control && prevState != noone){
+	//	current_state = prevState;
+	//}
 	control = true;
 }
