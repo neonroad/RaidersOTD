@@ -23,7 +23,6 @@ function scCheckCollision() {
 	//move_hsp = 0;
 	//move_vsp = 0;
 	
-	
 	var prevX = x;
 	var prevY = y;
 
@@ -40,12 +39,22 @@ function scCheckCollision() {
 				var yTarget = prevY + lengthdir_y(pixelsThisFrame, modifyDir);
 				var modX = prevX + (lengthdir_x(pixelsThisFrame, modifyDir) * localTD);
 				var modY = prevY + (lengthdir_y(pixelsThisFrame, modifyDir) * localTD);
-				var checkWall = instance_place(xTarget, yTarget, oWall);
-				if(checkWall == noone || (variable_instance_exists(checkWall, "open") && checkWall.open)){
+				ds_list_clear(touchingWalls);
+				var checkWall = instance_place_list(xTarget, yTarget, oWall, touchingWalls, false);
+				
+				var solidWall = false;
+				if(!ignoreWalls){
+					for (var j = 0; j < ds_list_size(touchingWalls); j++) {
+						if(!variable_instance_exists(touchingWalls[|0], "open") || !touchingWalls[|0].open){
+							solidWall = true;
+							break;
+						}
+					}
+				}
+				if(!solidWall){
 					x = modX;
 					y = modY;
 					movedSuccesfully = true;
-					
 				}
 			}
 		}
@@ -74,7 +83,7 @@ function scCheckCollision2() {
 	var move_v = shootable_map[?SHOOTABLE_MAP.VSP];
 
 	//Remove walls touching every frame
-	touchingWalls = [];
+	
 
 	//If cant control, neutralize move
 	
@@ -92,35 +101,46 @@ function scCheckCollision2() {
 		for (var i = 0; i <= 80 ; i += 10) {
 			if(movedSuccesfully) break;
 			for (var n = -1;  n <= 1; n += 2){
+				ds_list_clear(touchingWalls);
 				var modifyDir = (n * i) + dir;	
 				var xTarget = prevX + lengthdir_x(pixelsThisFrame, modifyDir);
 				var yTarget = prevY + lengthdir_y(pixelsThisFrame, modifyDir);
 				var modX = prevX + (lengthdir_x(pixelsThisFrame, modifyDir)*localTD);
 				var modY = prevY + (lengthdir_y(pixelsThisFrame, modifyDir)*localTD);
-				var checkWall = instance_place(xTarget, yTarget, oWall);
-				if(checkWall == noone || (variable_instance_exists(checkWall, "open") && checkWall.open) || ignoreWalls){
+				var checkWall = instance_place_list(xTarget, yTarget, oWall, touchingWalls, false);
+				var solidWall = false;
+				if(!ignoreWalls){
+					for (var j = 0; j < ds_list_size(touchingWalls); j++) {
+						if(!variable_instance_exists(touchingWalls[|0], "open") || !touchingWalls[|0].open){
+							solidWall = true;
+							break;
+						}
+					}
+				}
+				if(!solidWall){
 					x = modX;
 					y = modY;
 					movedSuccesfully = true;
 				}
-				//destroy wall
-				if(object_index == oMobGrunt && checkWall != noone && checkWall.object_index == oBreakableWall){
-					instance_destroy(checkWall);
-					oGame.reloadWalls();
-					scUIShakeSet(10,10);
-					part_emitter_region(global.particleSystem, global.emitter, bbox_left-5,bbox_right+5,bbox_top-2,bbox_bottom+2,ps_shape_ellipse,ps_distr_linear);
-					part_emitter_burst(global.particleSystem, global.emitter, oParticleSystem.particle_smoke1, irandom_range(14,18));
+				////destroy wall
+				//if(object_index == oMobGrunt && solidWall){
+				//	instance_destroy(checkWall);
+				//	oGame.reloadWalls();
+				//	scUIShakeSet(10,10);
+				//	part_emitter_region(global.particleSystem, global.emitter, bbox_left-5,bbox_right+5,bbox_top-2,bbox_bottom+2,ps_shape_ellipse,ps_distr_linear);
+				//	part_emitter_burst(global.particleSystem, global.emitter, oParticleSystem.particle_smoke1, irandom_range(14,18));
 					
 
-				}
+				//}
 				
-				if(checkWall != noone && (variable_instance_exists(checkWall, "open") && !checkWall.open)){
-					if(!array_find_index(touchingWalls, function(element, index, checkWall){
-						return element == checkWall;
-					})){
-						array_push(touchingWalls, checkWall);	
-					}
-				}
+				
+				//if(checkWall != noone || (variable_instance_exists(checkWall, "open") && !checkWall.open)){
+				//	if(!array_find_index(touchingWalls, function(element, index, checkWall){
+				//		return element == checkWall;
+				//	})){
+				//		array_push(touchingWalls, checkWall);	
+				//	}
+				//}
 			}
 		}
 		//OBSERVED speed

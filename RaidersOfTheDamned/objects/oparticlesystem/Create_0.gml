@@ -57,6 +57,12 @@ part_type_life(particle_itemRare, 15, 30);
 part_type_speed(particle_itemRare, 0,0.01,-0.005,0);
 part_type_direction(particle_itemRare, 90,90,0,0);
 
+particle_crystal = part_type_create();
+part_type_sprite(particle_crystal, spParticle_Crystal, true, true, false);
+part_type_life(particle_crystal, 15, 30);
+part_type_speed(particle_crystal, 0,0.01,-0.005,0);
+part_type_direction(particle_crystal, 90,90,0,0);
+
 particle_sleep = part_type_create();
 part_type_sprite(particle_sleep, spParticle_Sleep,true,true,false);
 part_type_life(particle_sleep, 60,60);

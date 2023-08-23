@@ -50,9 +50,9 @@ if(shootable_map[?SHOOTABLE_MAP.DEAD]){
 		exit;
 	}
 	
-	if(array_length(touchingWalls)>0){
+	if(ds_list_size(touchingWalls)>0){
 		surface_set_target(oDecalSurfW.surf);
-		draw_sprite_ext(spBloodSplatWall,irandom(sprite_get_number(spBloodSplatWall)),x,y,1,1,point_direction(x,y,x+shootable_map[? SHOOTABLE_MAP.HSP],y+shootable_map[? SHOOTABLE_MAP.VSP])-90,make_color_hsv(color_get_hue(bloodColor), color_get_saturation(bloodColor), color_get_value(bloodColor)-10),1);
+		draw_sprite_ext(spBloodSplatWall,irandom(sprite_get_number(spBloodSplatWall)),x,y,0.3,0.3,point_direction(x,y,x+shootable_map[? SHOOTABLE_MAP.HSP],y+shootable_map[? SHOOTABLE_MAP.VSP])-90,make_color_hsv(color_get_hue(bloodColor), color_get_saturation(bloodColor), color_get_value(bloodColor)-10),1);
 		surface_reset_target();
 		oDecalSurf.drawnTo = true;	
 	}
@@ -63,7 +63,7 @@ if(shootable_map[?SHOOTABLE_MAP.DEAD]){
 if(ai_start_cooldown > 0) exit;
 
 var prevTarget = target;
-target = point_distance(x,y, instance_nearest(oPlayer).x, instance_nearest(oPlayer).y) < 100 ? instance_nearest(oPlayer) : noone;
+target = point_distance(x,y, instance_nearest(x,y,oPlayer).x, instance_nearest(x,y,oPlayer).y) < 100 ? instance_nearest(x,y,oPlayer) : noone;
 if(control && target != prevTarget) part_particles_create(global.particleSystem, x, bbox_top, oParticleSystem.particle_exclam, 1);
 	
 if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
@@ -82,7 +82,7 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 			madePath = mp_grid_path(oGame.mapGrid, currentPath, x,y,target.x,target.y,true);	
 		}
 		
-		if(point_distance(x,y,target.x,target.y) < 60 && contact_cooldown < 0 && current_state == ROCK_STATE.IDLE){
+		if(ds_list_size(touchingWalls) <= 0 && point_distance(x,y,target.x,target.y) < 60 && contact_cooldown < 0 && current_state == ROCK_STATE.IDLE){
 			current_state = ROCK_STATE.CHARGING;
 			animVar = 0;
 			currentSprite = spRockHeadHealthyCharge;
@@ -191,13 +191,13 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 	}
 	
 	if(animVar >= sprite_get_number(currentSprite)){
-		if(current_state == ROCK_STATE.CHARGING){
+		if(control && current_state == ROCK_STATE.CHARGING){
 			current_state = ROCK_STATE.ATTACKING;
 			currentSprite = spRockHeadHealthyAttacking;
 			walk_speed = walk_speed_base*4;
 			animVar = 0;
 		}
-		if(current_state == ROCK_STATE.ATTACKING){
+		if((!control && current_state == ROCK_STATE.CHARGING) || current_state == ROCK_STATE.ATTACKING){
 			attackAnimLoop++;
 			animVar = 0;
 			if(attackAnimLoop > 5){
@@ -209,6 +209,20 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 		}
 	}
 		
+		
+	if(current_state == ROCK_STATE.ATTACKING && (shootable_map[? SHOOTABLE_MAP.HSP] != 0 || shootable_map[? SHOOTABLE_MAP.VSP] != 0)){
+		if(ds_list_size(touchingWalls) > 0){
+			for (var i = 0; i < ds_list_size(touchingWalls); i++) {
+			    if(variable_instance_exists(touchingWalls[| i], "open") && touchingWalls[| i].open){
+					
+				}
+			}
+			scDamage(id,id,20,DAMAGE_TYPE.BULLET);	
+			animVar = sprite_get_number(currentSprite);
+			attackAnimLoop = 99;
+			//Guarantee change through normal means
+		}
+	}
 }
 
 else{

@@ -18,6 +18,8 @@ asym = false; //For drawing asymmetrical sprites
 
 currently_attacking = false;
 
+pathfindCooldown = 0;
+pathfindCooldown_Max = 100;
 deadSpriteChosen = false;
 idleSprite = noone;
 deadSprite = noone;
@@ -36,7 +38,7 @@ timerShadow = 0;
 deadSpriteAnimLoop = false;
 shootable_map[? SHOOTABLE_MAP.FRIENDLY] = false;
 bloodColor = make_color_rgb(151,46,46);
-touchingWalls = [];
+
 
 //Not proud of these
 bleedApplier = noone;

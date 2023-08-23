@@ -7,6 +7,7 @@ shootable_map[? SHOOTABLE_MAP.HSP] = 0;
 shootable_map[? SHOOTABLE_MAP.VSP] = 0;
 flash_frames = 0;
 crowdcontrol_cooldown = 0;
+touchingWalls = ds_list_create();
 friction_base = 0.5;
 damageDealt = 1;
 ignoreWalls = false;

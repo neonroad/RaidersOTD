@@ -95,7 +95,7 @@ if(room != rmTutorial && room != rmIntro && player != noone && instance_exists(p
 			//}
 			//else
 				
-			zomb = instance_create_layer(x, y, "Mobs", oMobZombie/*choose(/*oMobImp,oMobProphet,oMobZombie,oMobZombie,oMobZombie,oMobWormDog,oMobWormDog)*/);	
+			zomb = instance_create_layer(x, y, "Mobs", choose(oMobRockHead,oMobZombie)/*choose(/*oMobImp,oMobProphet,oMobZombie,oMobZombie,oMobZombie,oMobWormDog,oMobWormDog)*/);	
 			
 			
 			zomb.ai_start_cooldown = 60;

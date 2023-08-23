@@ -74,9 +74,9 @@ if(shootable_map[?SHOOTABLE_MAP.DEAD]){
 		exit;
 	}
 	
-	if(array_length(touchingWalls)>0){
+	if(ds_list_size(touchingWalls)>0){
 		surface_set_target(oDecalSurfW.surf);
-		draw_sprite_ext(spBloodSplatWall,irandom(sprite_get_number(spBloodSplatWall)),x,y,1,1,point_direction(x,y,x+shootable_map[? SHOOTABLE_MAP.HSP],y+shootable_map[? SHOOTABLE_MAP.VSP])-90,make_color_hsv(color_get_hue(bloodColor), color_get_saturation(bloodColor), color_get_value(bloodColor)-10),1);
+		draw_sprite_ext(spBloodSplatWall,irandom(sprite_get_number(spBloodSplatWall)),x,y,0.3,0.3,point_direction(x,y,x+shootable_map[? SHOOTABLE_MAP.HSP],y+shootable_map[? SHOOTABLE_MAP.VSP])-90,make_color_hsv(color_get_hue(bloodColor), color_get_saturation(bloodColor), color_get_value(bloodColor)-10),1);
 		surface_reset_target();
 		oDecalSurf.drawnTo = true;	
 	}
@@ -92,11 +92,10 @@ else
 	control = true;
 */
 
-target = instance_nearest(x,y, oPlayer);
-if(!instance_exists(target) || target.shootable_map[? SHOOTABLE_MAP.DEAD] || point_distance(x,y,target.x,target.y)>400){
-	//instance_destroy();
-	//exit;
-}
+var prevTarget = target;
+target = point_distance(x,y, instance_nearest(x,y,oPlayer).x, instance_nearest(x,y,oPlayer).y) < attack_range*1.5 ? instance_nearest(x,y,oPlayer) : noone;
+if(control && target != prevTarget) part_particles_create(global.particleSystem, x, bbox_top, oParticleSystem.particle_exclam, 1);
+
 
 	
 //if(!shootable_map[? SHOOTABLE_MAP.DEAD] && current_state != ZOMBIE_STATE.ATTACKING && shootable_map[? SHOOTABLE_MAP.HSP] == 0 && shootable_map[?SHOOTABLE_MAP.VSP] == 0){
@@ -111,8 +110,10 @@ if(!instance_exists(target) || target.shootable_map[? SHOOTABLE_MAP.DEAD] || poi
 if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 	
 	if(shootable_map[? SHOOTABLE_MAP.HSP] != 0 || shootable_map[?SHOOTABLE_MAP.VSP] != 0){
-		if(current_state == ZOMBIE_STATE.WALKING)
+		if(current_state == ZOMBIE_STATE.WALKING){
 			currentSprite = walkSprite;
+			if(target == noone) currentSprite = spZombieWalk;
+		}
 		else if(current_state == ZOMBIE_STATE.ATTACKING)
 			currentSprite = attackSprite;
 	}
@@ -124,12 +125,14 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 			currentSprite = spZombieDoorLeanHit;
 		else if(current_state == ZOMBIE_STATE.DOORLEANFAIL)
 			currentSprite = spZombieDoorLeanFail;
+		else if(current_state == ZOMBIE_STATE.WALKING)
+			currentSprite = idleSprite;
 	}
 	
 	
-	currentPath = path_add();
+	if(pathfindCooldown <= 0) currentPath = path_add();
 	var madePath = false;
-	if(target != noone){
+	if(target != noone && path_exists(currentPath)){
 		if(prevX == x && prevY == y){
 			madePath = mp_grid_path(oGame.mapGrid, currentPath, x,y,x+irandom_range(-32,32),y+irandom_range(-32,32),true);		
 		}
@@ -137,6 +140,7 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 			madePath = mp_grid_path(oGame.mapGrid, currentPath, x,y,target.x,target.y,true);	
 		}
 		
+		pathfindCooldown = 10+irandom_range(-5,5);
 		//Attack
 		if(current_state == ZOMBIE_STATE.WALKING && oPlayer.iframes <= 0 && contact_cooldown <= 0 && checkLOS() && point_distance(x,y,target.x,target.y)<attack_range){
 			contact_cooldown = contact_cooldown_max;
@@ -151,34 +155,47 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 			startChargeX = x;
 			startChargeY = y;
 		}
+		else if(current_state == ZOMBIE_STATE.WALKING){
+			walk_speed = walk_speed_base;	
+		}
 		//else if(current_state != ZOMBIE_STATE.CHARGING && current_state != ZOMBIE_STATE.ATTACKING){
 		//	current_state = ZOMBIE_STATE.WALKING;	
 		//}
+		/**localTD*/;
 	}
 	
+	else if(target == noone && path_exists(currentPath)){
+		walk_speed = walk_speed_base*0.5;
+		//madePath = mp_grid_path(oGame.mapGrid, currentPath, x,y,x+irandom_range(-32*5,32*5),y+irandom_range(-32,32),true);		
+		madePath = true;
+		
+		pathfindCooldown_Max = irandom_range(100,360);
+		pathfindCooldown = pathfindCooldown_Max;
+	}
 	
+	else if(pathfindCooldown <= 0){
+		walk_speed = 0;	
+		currentSprite = idleSprite;
+		pathfindCooldown = pathfindCooldown_Max;
+	}
 	
 		
-	if(target != noone && madePath)
+	if(!instance_exists(target) && madePath)
+		scLookAt(x+irandom_range(-32*5,32*5),y+irandom_range(-32*5,32*5));
+	else if(instance_exists(target) && madePath)
 		scLookAt(path_get_point_x(currentPath,1), path_get_point_y(currentPath,1));
 	else if(instance_exists(target) && point_distance(x,y, target.x, target.y) < 500)
 		scLookAt(target.x, target.y);
-		
-	if(current_state == ZOMBIE_STATE.WALKING || current_state == ZOMBIE_STATE.CHARGING){
-		currentSpeed = walk_speed/**localTD*/;
-	}
-	
-	shootable_map[?SHOOTABLE_MAP.HSP] = lengthdir_x(currentSpeed, angleFacing);
-	shootable_map[?SHOOTABLE_MAP.VSP] = -lengthdir_y(currentSpeed, angleFacing);
-		
-	path_delete(currentPath);
-		
-	//if(current_state != ZOMBIE_STATE.CHARGING && current_state != ZOMBIE_STATE.ATTACKING && (shootable_map[? SHOOTABLE_MAP.HSP] != 0 || shootable_map[? SHOOTABLE_MAP.VSP] != 0)){
-	//	current_state = ZOMBIE_STATE.WALKING;	
-	//}
-		
 	
 	
+	shootable_map[?SHOOTABLE_MAP.HSP] = lengthdir_x(walk_speed, angleFacing);
+	shootable_map[?SHOOTABLE_MAP.VSP] = -lengthdir_y(walk_speed, angleFacing);
+		
+	
+		
+	pathfindCooldown -= localTD;
+	
+	if(pathfindCooldown <= 0) path_delete(currentPath);
 	
 	
 	
@@ -203,12 +220,12 @@ else if(!control || shootable_map[?SHOOTABLE_MAP.DEAD]){
 
 
 //FIX AUDIO/TIME SYNCH
-if(currentSprite == spZombieRun && point_distance(x, y, target.x, target.y) < 300){
-	if(animVar%8 == 2)
-		audio_play_sound_at(snWalk1, x, y, 0, 60, 240, 0.5, false, 0);	
-	if(animVar%8 == 6)
-		audio_play_sound_at(snWalk2, x, y, 0, 60, 240, 0.5, false, 0);
-}
+//if(currentSprite == spZombieRun && point_distance(x, y, target.x, target.y) < 300){
+//	if(animVar%8 == 2)
+//		audio_play_sound_at(snWalk1, x, y, 0, 60, 240, 0.5, false, 0);	
+//	if(animVar%8 == 6)
+//		audio_play_sound_at(snWalk2, x, y, 0, 60, 240, 0.5, false, 0);
+//}
 
 
 
@@ -236,7 +253,7 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 				current_state = ZOMBIE_STATE.ATTACKING;
 				animVar = 0;
 				currentSprite = attackSprite;
-				currentSpeed = 0;
+				walk_speed = 0;
 				ent_hit.iframes = 90;
 				ent_hit.current_state = scStateManager(PLAYER_STATE.HURT, ent_hit);
 				ent_hit.move_hsp = 0;
@@ -361,17 +378,17 @@ contact_cooldown-= localTD;
 scCheckCollision2();
 
 if(current_state != ZOMBIE_STATE.DOORLEANFAIL && current_state != ZOMBIE_STATE.DOORLEANLOOP && current_state != ZOMBIE_STATE.DOORLEANSTART){
-	for (var i = 0; i < array_length(touchingWalls); i++) {
-	    if(touchingWalls[i].object_index == oDoorSliding){
+	for (var i = 0; i < ds_list_size(touchingWalls); i++) {
+	    if(touchingWalls[| i].object_index == oDoorSliding && !touchingWalls[| i].open){
 			if(current_state == ZOMBIE_STATE.WALKING){
 				current_state = ZOMBIE_STATE.DOORLEANSTART;
 				animVar = 0;
 				shootable_map[? SHOOTABLE_MAP.HSP] = 0;
 				shootable_map[? SHOOTABLE_MAP.VSP] = 0;
-				currentSpeed = 0;
+				walk_speed = 0;
 			}
 			//walk_speed = 0;
-			doorLeaningOn = touchingWalls[i];
+			doorLeaningOn = touchingWalls[|i];
 			break;
 		}
 	}
