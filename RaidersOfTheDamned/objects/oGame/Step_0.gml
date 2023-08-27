@@ -17,8 +17,8 @@ function reloadWalls(){
 	mapGridBreakable = mp_grid_create(864,768,50,50,32,32);
 	mp_grid_add_instances(mapGridBreakable,oWall,false);
 
-	for (var i = 0; i < instance_number(oBreakableWall); i++) {
-	    var wall = instance_find(oBreakableWall, i);
+	for (var i = 0; i < instance_number(oObstacleCrystal); i++) {
+	    var wall = instance_find(oObstacleCrystal, i);
 		mp_grid_clear_cell(mapGridBreakable,1+((wall.x - 896) div 32),1+((wall.y- 800) div 32));
 	}	
 	if(ds_exists(minimapGrid, ds_type_grid))

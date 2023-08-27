@@ -38,6 +38,10 @@ function scOnRoll(target=noone){
 				array_push(oUpgradeManager.stepScripts, pushBuff);
 				#endregion
 		        break;
+				
+			case UPGRADES.K1:
+				oUpgradeManager.player.rollEnhanced = true;
+				break;
 		    
 		}
 	}

@@ -63,21 +63,20 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 	
 	if(current_state != GRUNT_STATE.PUNCHING){
 		currentPath = path_add();
-		if(target != noone){
+		var madePath = false;
+		if(target != noone && path_exists(currentPath)){
 			if(prevX == x && prevY == y){
-				mp_grid_path(oGame.mapGridBreakable, currentPath, x,y,x+irandom_range(-32,32),y+irandom_range(-32,32),true);		
+				madePath = mp_grid_path(oGame.mapGridBreakable, currentPath, x,y,x+irandom_range(-32,32),y+irandom_range(-32,32),true);		
 			}
 			else{
-				mp_grid_path(oGame.mapGridBreakable, currentPath, x,y,target.x,target.y,true);	
+				madePath = mp_grid_path(oGame.mapGridBreakable, currentPath, x,y,target.x,target.y,true);	
 			}
-		
 		}
-	
 	
 		if(currentPath != noone && contact_cooldown <= 0){
 		
 			if(target != noone){
-				scLookAt(path_get_point_x(currentPath,1), path_get_point_y(currentPath,1));
+				
 				if(point_distance(x,y,target.x, target.y) < 64*4 && animVar % 4 == 0){
 					scUIShakeSet(floor(0.25*((4*64) - point_distance(x,y,target.x, target.y))), 2);
 					oGame.combatTimer += 600;
@@ -92,13 +91,18 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 		
 			shootable_map[?SHOOTABLE_MAP.HSP] = lengthdir_x(walk_speed, angleFacing);
 			shootable_map[?SHOOTABLE_MAP.VSP] = -lengthdir_y(walk_speed, angleFacing);
-		
-			path_delete(currentPath);
+	
 		
 			current_state = GRUNT_STATE.WALKING;	
 		
-		
-		
+			if(!instance_exists(target) && madePath)
+				scLookAt(x+irandom_range(-32*5,32*5),y+irandom_range(-32*5,32*5));
+			else if(instance_exists(target) && madePath)
+				scLookAt(path_get_point_x(currentPath,1), path_get_point_y(currentPath,1));
+			else if(instance_exists(target))
+				scLookAt(target.x, target.y);
+			
+			path_delete(currentPath);
 		
 		}
 	}

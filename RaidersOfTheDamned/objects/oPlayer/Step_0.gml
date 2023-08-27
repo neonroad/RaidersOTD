@@ -80,6 +80,13 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 	}
 	else{
 		hitWall = scCheckCollision2();
+		
+		if(current_state == PLAYER_STATE.ROLLING){
+			for (var i = 0; i < ds_list_size(touchingWalls); i++) {
+			    if(rollEnhanced && touchingWalls[| i].object_index == oObstacleCrystal)
+					touchingWalls[| i].destroyed = true;
+			}
+		}
 	}
 	if(current_state == PLAYER_STATE.LAUNCHED){
 		if(currentSprite != spPlayerLaunch){

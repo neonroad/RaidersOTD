@@ -40,8 +40,8 @@ mp_grid_add_instances(mapGrid,oWall,false);
 
 mp_grid_add_instances(mapGridBreakable,oWall,false);
 
-for (var i = 0; i < instance_number(oBreakableWall); i++) {
-	var wall = instance_find(oBreakableWall, i);
+for (var i = 0; i < instance_number(oObstacleCrystal); i++) {
+	var wall = instance_find(oObstacleCrystal, i);
 	mp_grid_clear_cell(mapGridBreakable,1+((wall.x - 896) div 32),1+((wall.y- 800) div 32));
 }	
 

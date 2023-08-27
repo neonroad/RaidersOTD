@@ -10,6 +10,7 @@ enum PLAYER_STATE{
 var curs = instance_create_depth(x,y,-500,oCursor);
 curs.owner = id;
 
+rollEnhanced = false;
 recoilTime = 0;
 uiShake = 0;
 uiShakeDur = 0;

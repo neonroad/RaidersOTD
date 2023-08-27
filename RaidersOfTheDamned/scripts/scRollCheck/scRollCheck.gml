@@ -7,12 +7,12 @@ function scRollCheck(){
 		current_state = scStateManager(PLAYER_STATE.ROLLING);
 		image_speed = 0.3;
 		animVar = 0;
-		audio_play_sound(snWeaponSwitch,1,false,,,0.5);
 		
+		audio_play_sound(snWeaponSwitch,1,false,,,rollEnhanced ? 1.2 : 0.5);
 		var rollAngle = point_direction(x,y,mouse_x,mouse_y);
 		var angle = scAimGeneric(rollAngle);
-		shootable_map[? SHOOTABLE_MAP.HSP] = lengthdir_x(walk_speed*2,rollAngle);
-		shootable_map[? SHOOTABLE_MAP.VSP] = lengthdir_y(walk_speed*2,rollAngle);
+		shootable_map[? SHOOTABLE_MAP.HSP] = lengthdir_x(rollEnhanced ? walk_speed * 4 : walk_speed*2,rollAngle);
+		shootable_map[? SHOOTABLE_MAP.VSP] = lengthdir_y(rollEnhanced ? walk_speed * 4 : walk_speed*2,rollAngle);
 		switch (angle) {
 		    case 0:
 		        currentSprite = spPlayerRollE;

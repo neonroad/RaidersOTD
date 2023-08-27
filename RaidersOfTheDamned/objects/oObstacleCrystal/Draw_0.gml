@@ -10,6 +10,7 @@ if(destroyed){
 		with(oGame) reloadWalls();
 		audio_play_sound_at(snCrystalShatter, x, y, 0, 60, 240, 0.5, false, 2,,,random_range(0.8,1.2));
 		scParticleBurst(x, y,x,y,30,10,60,make_color_rgb(75, 128, 202), true, 0,360,1);
+		instance_destroy(emitsLight);
 	}
 }
 
