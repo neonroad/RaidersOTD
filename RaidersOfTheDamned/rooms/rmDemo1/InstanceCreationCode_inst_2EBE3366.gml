@@ -1,0 +1,1 @@
+ai_start_cooldown = -100;

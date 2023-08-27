@@ -6,7 +6,7 @@ walk_speed_base = 0.8;
 walk_speed = walk_speed_base;
 
 enum GRUNT_STATE {
-	IDLE, WALKING, CHARGING, ATTACKING, RECHARGING,	DEAD,
+	IDLE, WALKING, CHARGING, ATTACKING, RECHARGING,	DEAD, PUNCHING,
 }
 
 scale = 2;
