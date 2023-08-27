@@ -2,29 +2,22 @@
 
 
 if(destroyed){
-	draw_sprite(spObstacleBarrel,1,x,bbox_top);
-
-	draw_sprite(spObstacleBarrel,2,x-10,y);
-
-
-	draw_sprite(spObstacleBarrel,3,x+10,y);
-
-
-	draw_sprite(spObstacleBarrel,1,x,bbox_bottom);
+	image_index = 1;
 	
 	//Trigger once
 	if(!open){
 		open = true;
 		with(oGame) reloadWalls();
+		audio_play_sound_at(snCrystalShatter, x, y, 0, 60, 240, 0.5, false, 2,,,random_range(0.8,1.2));
+		scParticleBurst(x, y,x,y,30,10,60,make_color_rgb(75, 128, 202), true, 0,360,1);
 	}
 }
 
-else{
-	draw_sprite(spObstacleCrystal,0,x,y);
-}
+draw_self();
 
 part_timer-=global.TD;
-if(part_timer <= 0){
+if(!destroyed && part_timer <= 0){
 	part_particles_create(global.particleSystem, irandom_range(bbox_left, bbox_right), irandom_range(bbox_top, bbox_bottom), oParticleSystem.particle_crystal, 1);
 	part_timer += irandom_range(10,20);
 }
+

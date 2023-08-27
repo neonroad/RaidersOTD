@@ -13,14 +13,15 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"bffbd4fb-8f97-44e3-a58f-2fcf162f5034",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"3b5d7a99-bee6-4b82-8870-456633b49616",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"47b7b14c-29cb-48d0-a22c-a05fea60eb37",},
   ],
   "gridX": 0,
   "gridY": 0,
   "height": 32,
   "HTile": false,
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"cba6cdda-daa2-4b90-ae22-1a9bc30e7ddc","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"b0fabee8-5cef-4d2d-930f-d975c592c951","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
   "origin": 0,
@@ -43,7 +44,7 @@
     "events": {"resourceType":"KeyframeStore<MessageEventKeyframe>","resourceVersion":"1.0","Keyframes":[],},
     "eventStubScript": null,
     "eventToFunction": {},
-    "length": 1.0,
+    "length": 2.0,
     "lockOrigin": false,
     "moments": {"resourceType":"KeyframeStore<MomentsEventKeyframe>","resourceVersion":"1.0","Keyframes":[],},
     "playback": 1,
@@ -54,7 +55,8 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"bffbd4fb-8f97-44e3-a58f-2fcf162f5034","path":"sprites/spObstacleCrystal/spObstacleCrystal.yy",},},},"Disabled":false,"id":"5fbbdcbe-a834-475f-ab33-0550ac136d6e","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"3b5d7a99-bee6-4b82-8870-456633b49616","path":"sprites/spObstacleCrystal/spObstacleCrystal.yy",},},},"Disabled":false,"id":"3a95f65e-6edc-453b-a6f5-51d4667251fa","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"47b7b14c-29cb-48d0-a22c-a05fea60eb37","path":"sprites/spObstacleCrystal/spObstacleCrystal.yy",},},},"Disabled":false,"id":"3a149259-febf-4760-b9fe-737f893b5b81","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,

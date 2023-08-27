@@ -160,11 +160,11 @@ if(gameStart){
 }
 
 if(player.cameraControl){
-	xTo = player.x;
-	yTo = player.y;
+	xTo = player.x+player.shootable_map[? SHOOTABLE_MAP.HSP];
+	yTo = player.y+player.shootable_map[? SHOOTABLE_MAP.VSP];
 
-	xIs += (xTo - xIs)/1;//player.shootable_map[? SHOOTABLE_MAP.HSP] //(xTo - xIs)/25;
-	yIs += (yTo - yIs)/1;
+	xIs += (xTo - xIs)/25;//player.shootable_map[? SHOOTABLE_MAP.HSP] //(xTo - xIs)/25;
+	yIs += (yTo - yIs)/25;
 }
 else{
 	xTo = player.cameraPivotX;

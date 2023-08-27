@@ -317,6 +317,7 @@
     {"id":{"name":"oInteractCursor","path":"objects/oInteractCursor/oInteractCursor.yy",},},
     {"id":{"name":"spUIHealth2","path":"sprites/spUIHealth2/spUIHealth2.yy",},},
     {"id":{"name":"snMusicTitle","path":"sounds/snMusicTitle/snMusicTitle.yy",},},
+    {"id":{"name":"snCrystalShatter","path":"sounds/snCrystalShatter/snCrystalShatter.yy",},},
     {"id":{"name":"spPlayerRollNW","path":"sprites/spPlayerRollNW/spPlayerRollNW.yy",},},
     {"id":{"name":"snWeaponPickup","path":"sounds/snWeaponPickup/snWeaponPickup.yy",},},
     {"id":{"name":"spBooks","path":"sprites/spBooks/spBooks.yy",},},
