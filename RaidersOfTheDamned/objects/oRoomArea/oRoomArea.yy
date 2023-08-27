@@ -38,5 +38,5 @@
     "path": "sprites/spInteriorArea/spInteriorArea.yy",
   },
   "spriteMaskId": null,
-  "visible": false,
+  "visible": true,
 }
