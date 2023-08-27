@@ -6,8 +6,8 @@ event_inherited();
 
 
 
-
-//if(ai_start_cooldown <= -1) ai_start_cooldown = 0;
+ai_start_cooldown-= localTD;
+if(ai_start_cooldown <= -1) ai_start_cooldown = 0;
 
 animVar += image_speed*localTD;
 
@@ -42,8 +42,7 @@ if(shootable_map[?SHOOTABLE_MAP.DEAD]){
 
 
 //if(ai_start_cooldown > 0 && instance_place(x,y,oWall) != noone) instance_destroy();
-if(ai_start_cooldown != 0) exit;
-else if(ai_start_cooldown > 0) ai_start_cooldown-= localTD;
+if(ai_start_cooldown > 0) exit;
 /*
 if(flash_frames > 0)
 	control = false;
@@ -61,47 +60,46 @@ if(!shootable_map[? SHOOTABLE_MAP.DEAD] && current_state == GRUNT_STATE.RECHARGI
 	
 if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 	
-	if(current_state != GRUNT_STATE.PUNCHING){
-		currentPath = path_add();
-		if(target != noone){
-			if(prevX == x && prevY == y){
-				mp_grid_path(oGame.mapGridBreakable, currentPath, x,y,x+irandom_range(-32,32),y+irandom_range(-32,32),true);		
-			}
-			else{
-				mp_grid_path(oGame.mapGridBreakable, currentPath, x,y,target.x,target.y,true);	
-			}
-		
+	currentPath = path_add();
+	if(target != noone){
+		if(prevX == x && prevY == y){
+			mp_grid_path(oGame.mapGridBreakable, currentPath, x,y,x+irandom_range(-32,32),y+irandom_range(-32,32),true);		
 		}
-	
-	
-		if(currentPath != noone && contact_cooldown <= 0){
-		
-			if(target != noone){
-				scLookAt(path_get_point_x(currentPath,1), path_get_point_y(currentPath,1));
-				if(point_distance(x,y,target.x, target.y) < 64*4 && animVar % 4 == 0){
-					scUIShakeSet(floor(0.25*((4*64) - point_distance(x,y,target.x, target.y))), 2);
-					oGame.combatTimer += 600;
-				}
-			
-				if(target.iframes <= 0 && point_distance(x,y,target.x, target.y) < 32){
-					walk_speed *= 1.01;	
-				}
-				else
-					walk_speed = walk_speed_base;
-			}
-		
-			shootable_map[?SHOOTABLE_MAP.HSP] = lengthdir_x(walk_speed, angleFacing);
-			shootable_map[?SHOOTABLE_MAP.VSP] = -lengthdir_y(walk_speed, angleFacing);
-		
-			path_delete(currentPath);
-		
-			current_state = GRUNT_STATE.WALKING;	
-		
-		
-		
-		
+		else{
+			mp_grid_path(oGame.mapGridBreakable, currentPath, x,y,target.x,target.y,true);	
 		}
+		
 	}
+	
+	
+	if(currentPath != noone && contact_cooldown <= 0){
+		
+		if(target != noone){
+			scLookAt(path_get_point_x(currentPath,1), path_get_point_y(currentPath,1));
+			if(point_distance(x,y,target.x, target.y) < 64*4 && animVar % 4 == 0){
+				scUIShakeSet(floor(0.25*((4*64) - point_distance(x,y,target.x, target.y))), 2);
+				oGame.combatTimer += 600;
+			}
+			
+			if(target.iframes <= 0 && point_distance(x,y,target.x, target.y) < 32){
+				walk_speed *= 1.01;	
+			}
+			else
+				walk_speed = walk_speed_base;
+		}
+		currentSpeed = walk_speed;
+		shootable_map[?SHOOTABLE_MAP.HSP] = lengthdir_x(currentSpeed, angleFacing);
+		shootable_map[?SHOOTABLE_MAP.VSP] = -lengthdir_y(currentSpeed, angleFacing);
+		
+		path_delete(currentPath);
+		
+		current_state = GRUNT_STATE.WALKING;	
+		
+		
+		
+		
+	}
+	
 	
 	
 }
@@ -203,19 +201,6 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD] && crowdcontrol_cooldown <= 0){
 		if(pushing){
 			pushing = false;	
 		}
-		if(current_state == GRUNT_STATE.PUNCHING){
-			current_state = GRUNT_STATE.IDLE;	
-			walk_speed = walk_speed_base;
-			
-		}
-	}
-	
-	if(current_state == GRUNT_STATE.PUNCHING && animVar == 7){
-		doorLeaningOn.destroyed = true;
-			
-		if(instance_exists(eventOwner) && eventOwner.eventTriggered && !eventOwner.eventOver){
-			eventOwner.eventOver = true;	
-		}
 	}
 	
 	if(invisible){
@@ -236,24 +221,6 @@ contact_cooldown-= localTD;
 
 
 scCheckCollision2();
-
-if(current_state != GRUNT_STATE.PUNCHING){
-	for (var i = 0; i < ds_list_size(touchingWalls); i++) {
-	    if(touchingWalls[| i].object_index == oObstacleCrystal && !touchingWalls[| i].open){
-			if(current_state == GRUNT_STATE.WALKING){
-				current_state = GRUNT_STATE.PUNCHING;
-				animVar = 0;
-				shootable_map[? SHOOTABLE_MAP.HSP] = 0;
-				shootable_map[? SHOOTABLE_MAP.VSP] = 0;
-				walk_speed = 0;
-			}
-			//walk_speed = 0;
-			doorLeaningOn = touchingWalls[|i];
-			break;
-		}
-	}
-}
-
 
 var drawFacingAngle =point_direction(x,y,x + lengthdir_x(100,angleFacing), y - lengthdir_y(100, angleFacing));
 
@@ -331,9 +298,7 @@ else if(current_state == GRUNT_STATE.IDLE){
 			break;
 	}	
 }
-else if(current_state == GRUNT_STATE.PUNCHING){
-	currentSprite = spGrunt_IdleEPunch;
-}
+
 if(drawFacingAngle <= 120 || drawFacingAngle >= 290)
 	facing = -1;
 else

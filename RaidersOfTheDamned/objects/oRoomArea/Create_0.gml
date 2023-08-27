@@ -1,5 +1,3 @@
 /// @description 
-//mobs = [];
+mobs = [];
 
-eventTriggered = false;
-eventOver = false;

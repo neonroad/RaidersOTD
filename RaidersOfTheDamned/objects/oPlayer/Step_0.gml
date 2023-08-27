@@ -118,6 +118,7 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 	var vsp = shootable_map[? SHOOTABLE_MAP.VSP];
 	
 	currentSpeed = lerp(sqrt((hsp*hsp) + (vsp*vsp)), 0,localTD * friction_base);
+	currentSpeed = clamp(currentSpeed, 0, 2);
 	
 	shootable_map[? SHOOTABLE_MAP.HSP] = lengthdir_x(currentSpeed, darctan2(-vsp,hsp));
 	shootable_map[? SHOOTABLE_MAP.VSP] = lengthdir_y(currentSpeed, darctan2(-vsp,hsp));
