@@ -56,10 +56,10 @@ function scDamage(entity, damager, damage, reason) { //instance, DAMAGE_TYPE
 			case DAMAGE_TYPE.BULLET:
 				_map[? SHOOTABLE_MAP.HEALTH] -= damage;
 				surface_set_target(oDecalSurf.surf);
-				draw_sprite_ext(spBloodSpatterDirectional,irandom(sprite_get_number(spBloodSpatterDirectional)),x,y,damage/10,damage/10,point_direction(damager.x,damager.y,x,y),bloodColor,1);
+				draw_sprite_ext(spBloodSpatterDirectional,irandom(sprite_get_number(spBloodSpatterDirectional)),x,y,clamp(damage/10,0.5,1.5),clamp(damage/10,0.5,1.5),point_direction(damager.x,damager.y,x,y),bloodColor,1);
 				surface_reset_target();
 				surface_set_target(oDecalSurfW.surf);
-				draw_sprite_ext(spBloodSplatWall,irandom(sprite_get_number(spBloodSplatWall)),x,y,damage/10,damage/10,point_direction(damager.x,damager.y,x,y)-90,make_color_hsv(color_get_hue(bloodColor), color_get_saturation(bloodColor), color_get_value(bloodColor)-10),1);
+				draw_sprite_ext(spBloodSplatWall,irandom(sprite_get_number(spBloodSplatWall)),x,y,clamp(damage/10,0.5,1.5),clamp(damage/10,0.5,1.5),point_direction(damager.x,damager.y,x,y)-90,make_color_hsv(color_get_hue(bloodColor), color_get_saturation(bloodColor), color_get_value(bloodColor)-10),1);
 				surface_reset_target();
 				oDecalSurf.drawnTo = true;
 				break;

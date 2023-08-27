@@ -53,7 +53,7 @@ if(shootable_map[?SHOOTABLE_MAP.DEAD]){
 		exit;
 	}
 	
-	if(array_length(touchingWalls)>0){
+	if(ds_list_size(touchingWalls)>0){
 		surface_set_target(oDecalSurfW.surf);
 		draw_sprite_ext(spBloodSplatWall,irandom(sprite_get_number(spBloodSplatWall)),x,y,1,1,point_direction(x,y,x+shootable_map[? SHOOTABLE_MAP.HSP],y+shootable_map[? SHOOTABLE_MAP.VSP])-90,make_color_hsv(color_get_hue(bloodColor), color_get_saturation(bloodColor), color_get_value(bloodColor)-10),1);
 		surface_reset_target();

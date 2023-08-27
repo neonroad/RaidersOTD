@@ -60,6 +60,15 @@ if(!hit){
 					
 					if(bulletType == ITEMS.WEAPON_PISTOL){
 						damage *= 0.25;	
+						if(mob.object_index == oMobRockHead && mob.current_state == ROCK_STATE.ATTACKING){
+							var bullet = instance_create_depth(x0,y0,0,oBullet);	
+							bullet.targetAngle = -targetAngle+random_range(-5,5);
+							bullet.owner = mob;
+							bullet.x0 = floor(bullet.x);
+							bullet.y0 = floor(bullet.y);
+							bullet.crit = crit;
+							
+						}
 					}
 					
 					else if(bulletType == ITEMS.WEAPON_SHOTGUN){
@@ -67,7 +76,7 @@ if(!hit){
 						mob.crowdcontrol_cooldown = 20;
 						mob.shootable_map[? SHOOTABLE_MAP.HSP] += lengthdir_x(0.005*(250-cycles),owner.angleAiming);
 						mob.shootable_map[? SHOOTABLE_MAP.VSP] += lengthdir_y(0.005*(250-cycles),owner.angleAiming);
-						
+						mob.shotgunHit = true;
 					}
 					else if(bulletType == ITEMS.WEAPON_RIFLE){
 						damage *= 0.5;
