@@ -40,12 +40,12 @@ function scCheckCollision() {
 				var modX = prevX + (lengthdir_x(pixelsThisFrame, modifyDir) * localTD);
 				var modY = prevY + (lengthdir_y(pixelsThisFrame, modifyDir) * localTD);
 				ds_list_clear(touchingWalls);
-				var checkWall = instance_place_list(xTarget, yTarget, oWall, touchingWalls, false);
+				var checkWall = instance_place_list(modX, modY, oWall, touchingWalls, false);
 				
 				var solidWall = false;
 				if(!ignoreWalls){
 					for (var j = 0; j < ds_list_size(touchingWalls); j++) {
-						if(!variable_instance_exists(touchingWalls[|0], "open") || !touchingWalls[|0].open){
+						if(!variable_instance_exists(touchingWalls[|j], "open") || !touchingWalls[|j].open){
 							solidWall = true;
 							break;
 						}
@@ -111,7 +111,7 @@ function scCheckCollision2() {
 				var solidWall = false;
 				if(!ignoreWalls){
 					for (var j = 0; j < ds_list_size(touchingWalls); j++) {
-						if(!variable_instance_exists(touchingWalls[|0], "open") || !touchingWalls[|0].open){
+						if(!variable_instance_exists(touchingWalls[|j], "open") || !touchingWalls[|j].open){
 							solidWall = true;
 							break;
 						}

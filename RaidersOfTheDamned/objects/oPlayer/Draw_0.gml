@@ -16,7 +16,7 @@ draw_sprite_ext(currentSprite, floor(animVar), x + xModDraw, y + yModDraw, scale
 if(current_state == PLAYER_STATE.PLAYING)
 	scDrawArm(false);
 
-
+//draw_rectangle(bbox_left,bbox_top,bbox_right,bbox_bottom,false);
 //draw_text(x,bbox_bottom, move_hsp);
 //draw_text(x,bbox_bottom+10, shootable_map[? SHOOTABLE_MAP.HSP]);
 //if(instance_exists(oMobIllusionist))

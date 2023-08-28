@@ -43,6 +43,7 @@ else if(!unlocked && interactable && interacted){
 		audio_play_sound(snDoorUnlock, 20, false);
 		scParticleBurstLight(x-10,y-10,x+10,y+10, 10, 8, 40, c_white, false, 0,360, 0.5);
 		openDoor();
+		oGame.reloadWalls();
 	}
 }
 

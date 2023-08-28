@@ -9,17 +9,19 @@ function reloadWalls(){
 	
 	for (var i = 0; i < instance_number(oDoor); i++) {
 	    var wall = instance_find(oDoor, i);
-		if(wall.open) mp_grid_clear_cell(mapGrid,1+((wall.x - 896) div 32),1+((wall.y- 800) div 32));
+		if(wall.open || (variable_instance_exists(wall, "destroyed") && wall.destroyed)) mp_grid_clear_cell(mapGrid,1+((wall.x - 896) div 32),1+((wall.y- 800) div 32));
 	}	
+	
 
 	
 	mp_grid_destroy(mapGridBreakable);
 	mapGridBreakable = mp_grid_create(864,768,50,50,32,32);
 	mp_grid_add_instances(mapGridBreakable,oWall,false);
 
-	for (var i = 0; i < instance_number(oObstacleCrystal); i++) {
-	    var wall = instance_find(oObstacleCrystal, i);
-		mp_grid_clear_cell(mapGridBreakable,1+((wall.x - 896) div 32),1+((wall.y- 800) div 32));
+	for (var i = 0; i < instance_number(oDoor); i++) {
+	    var wall = instance_find(oDoor, i);
+		if(wall.object_index == oObstacleCrystal || wall.open || (variable_instance_exists(wall, "destroyed") && wall.destroyed)) 
+			mp_grid_clear_cell(mapGridBreakable,1+((wall.x - 896) div 32),1+((wall.y- 800) div 32));
 	}	
 	if(ds_exists(minimapGrid, ds_type_grid))
 		ds_grid_destroy(minimapGrid);
