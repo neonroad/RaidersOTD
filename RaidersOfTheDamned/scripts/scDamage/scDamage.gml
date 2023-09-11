@@ -21,6 +21,10 @@ function scDamage(entity, damager, damage, reason) { //instance, DAMAGE_TYPE
 				_map[?SHOOTABLE_MAP.HSP] += lengthdir_x(3, point_direction(damager.x, damager.y,x,y)); 
 				_map[?SHOOTABLE_MAP.VSP] += lengthdir_y(3, point_direction(damager.x, damager.y,x,y)); 
 				
+				surface_set_target(oDecalSurf.surf);
+				draw_sprite_ext(spBloodDripPositional,irandom(sprite_get_number(spBloodSpatterDirectional)),x,y,1,1,point_direction(damager.x,damager.y,x,y),bloodColor,1);
+				surface_reset_target();
+				
 				break;
 			case DAMAGE_TYPE.MELEE: //Only for mob-to-mob
 				_map[? SHOOTABLE_MAP.HEALTH] -= damage;

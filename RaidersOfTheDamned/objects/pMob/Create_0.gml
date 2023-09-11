@@ -16,6 +16,8 @@ shotgunHit = false;
 
 asym = false; //For drawing asymmetrical sprites
 
+drawAngle = 0;
+
 currently_attacking = false;
 
 pathfindCooldown = 0;

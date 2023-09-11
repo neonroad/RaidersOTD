@@ -26,6 +26,22 @@ if(shootable_map[?SHOOTABLE_MAP.DEAD]){
 	despawnTime-= localTD;
 	//alpha = lerp(alpha, 0.8, 0.05*localTD);
 	invisible = false;
+	
+	if(shotgunHit){
+		deadSprite = spCrystalCloudDie;
+		var xplode = instance_create_depth(x,y,depth,oImpSplosion);
+		xplode.owner = id;
+		
+		shootable_map[? SHOOTABLE_MAP.HSP] = 0;
+		shootable_map[? SHOOTABLE_MAP.VSP] = 0;
+	}
+	else if(deadSprite == spCrystalCloudDieWeak && deadSpriteChosen){
+		shootable_map[? SHOOTABLE_MAP.HSP] = lengthdir_x(despawnTime*0.007,angleFacing);
+		shootable_map[? SHOOTABLE_MAP.VSP] = lengthdir_y(despawnTime*0.007,angleFacing);
+		angleFacing+=irandom_range(-5,5);
+		deadSpriteAnimLoop = true;
+		drawAngle = angleFacing;
+	}
 	//depth = layer_get_depth("Mobs")+20;
 	
 	if(currentSprite != deadSprite && !deadSpriteChosen){
@@ -42,7 +58,7 @@ if(shootable_map[?SHOOTABLE_MAP.DEAD]){
 	
 	if(despawnTime <= 0){
 		surface_set_target(oDecalSurf.surf);
-		draw_sprite_ext(currentSprite, floor(animVar), x, y, !asym ? -facing*scale : 1, scale, 0, c_color, alpha);
+		draw_sprite_ext(currentSprite, floor(animVar), x, y, !asym ? -facing*scale : 1, scale, drawAngle, c_color, alpha);
 		surface_reset_target();
 		instance_destroy();
 		exit;
@@ -84,23 +100,9 @@ if(control && target != prevTarget) part_particles_create(global.particleSystem,
 if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 	
 	if(shootable_map[? SHOOTABLE_MAP.HSP] != 0 || shootable_map[?SHOOTABLE_MAP.VSP] != 0){
-		if(current_state == ZOMBIE_STATE.WALKING){
+		if(current_state == CLOUD_STATE.WALKING){
 			currentSprite = walkSprite;
-			if(target == noone) currentSprite = spZombieWalk;
 		}
-		else if(current_state == ZOMBIE_STATE.ATTACKING)
-			currentSprite = attackSprite;
-	}
-	
-	else{
-		if(current_state == ZOMBIE_STATE.DOORLEANSTART)
-			currentSprite = spZombieDoorLean;
-		else if(current_state == ZOMBIE_STATE.DOORLEANLOOP)
-			currentSprite = spZombieDoorLeanHit;
-		else if(current_state == ZOMBIE_STATE.DOORLEANFAIL)
-			currentSprite = spZombieDoorLeanFail;
-		else if(current_state == ZOMBIE_STATE.WALKING)
-			currentSprite = idleSprite;
 	}
 	
 	
@@ -116,20 +118,7 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 		
 		pathfindCooldown = 10+irandom_range(-5,5);
 		//Attack
-		if(current_state == ZOMBIE_STATE.WALKING && oPlayer.iframes <= 0 && contact_cooldown <= 0 && checkLOS() && point_distance(x,y,target.x,target.y)<attack_range){
-			contact_cooldown = contact_cooldown_max;
-			currentSprite = chargeSprite;
-			walk_speed *= 2;
-			animVar = 0;
-			current_state = ZOMBIE_STATE.CHARGING;
-			currentSprite = spZombieCharge;
-			part_particles_create(global.particleSystem, x, bbox_top, oParticleSystem.particle_exclam, 1);
-			audio_play_sound_at(snRun1, x, y, 0, 60, 240, 0.5, false, 2);
-			deadSprite = spZombieDieChargeB;
-			startChargeX = x;
-			startChargeY = y;
-		}
-		else if(current_state == ZOMBIE_STATE.WALKING){
+		if(current_state == CLOUD_STATE.WALKING){
 			walk_speed = walk_speed_base;	
 		}
 		//else if(current_state != ZOMBIE_STATE.CHARGING && current_state != ZOMBIE_STATE.ATTACKING){
@@ -223,19 +212,15 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 				
 			//Connect attack
 			
-			if(ent_hit.id == oPlayer.id && current_state == ZOMBIE_STATE.CHARGING && oPlayer.iframes <= -30 && oPlayer.current_state == PLAYER_STATE.PLAYING){
-				current_state = ZOMBIE_STATE.ATTACKING;
-				animVar = 0;
-				currentSprite = attackSprite;
-				walk_speed = 0;
+			if(ent_hit.id == oPlayer.id && oPlayer.iframes <= -30 && oPlayer.current_state == PLAYER_STATE.PLAYING){
 				ent_hit.iframes = 90;
-				ent_hit.current_state = scStateManager(PLAYER_STATE.HURT, ent_hit);
 				ent_hit.move_hsp = 0;
 				ent_hit.move_vsp = 0;
 				ent_hit.shootable_map[? SHOOTABLE_MAP.HSP] = 0;
 				ent_hit.shootable_map[? SHOOTABLE_MAP.VSP] = 0;
 				attacking = ent_hit.id;
-				audio_play_sound_at(snChomp, x, y, 0, 60, 240, 0.5, false, 2);
+				scDamage(ent_hit.id,id,1,DAMAGE_TYPE.TOUCH);
+				audio_play_sound_at(snImpactFlesh, x, y, 0, 60, 240, 0.5, false, 2);
 				
 			}
 		}	
@@ -256,124 +241,26 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 	
 	//Animation check
 	if(animVar >= sprite_get_number(currentSprite)){
-		if(current_state == ZOMBIE_STATE.CHARGING){
-			if(currentSprite != spZombieCharge || irandom(5) != 1){	
-				current_state = ZOMBIE_STATE.WALKING;
-				walk_speed = walk_speed_base;
-				deadSprite = spZombieDie;
-				endChargeX = x;
-				endChargeY = y;
-			}
-			else{
-				animVar = 0;
-			}
-			//show_debug_message(point_distance(startChargeX,startChargeY,endChargeX,endChargeY));
-		}
-		else if(current_state == ZOMBIE_STATE.ATTACKING){
-			current_state = ZOMBIE_STATE.WALKING;	
-			if(!scDamage(attacking,id,1,DAMAGE_TYPE.BULLET)) audio_play_sound_at(snHurt1, attacking.x, attacking.y, 0, 60, 240, 0.5, false, 2);
-			
-			attacking.current_state = scStateManager(PLAYER_STATE.ENDSTUN,attacking);
-			
-			attacking.iframes += 90;
-			walk_speed = walk_speed_base;
-			
-			scParticleBurst(attacking.x,attacking.y,attacking.x+10,attacking.y+10,15,1,100,bloodColor);
-			attacking = noone;
-			
-			
-		}
-		else if(current_state == ZOMBIE_STATE.DOORLEANSTART){
-			animVar = 0;
-			current_state = ZOMBIE_STATE.DOORLEANLOOP;
-			currentSprite = spZombieDoorLeanHit;
-		}
-		else if(current_state == ZOMBIE_STATE.DOORLEANFAIL){
-			current_state = ZOMBIE_STATE.WALKING;
-			walk_speed = walk_speed_base;
-		}
-		else if(current_state == ZOMBIE_STATE.FLINCHING){
-			current_state = ZOMBIE_STATE.WALKING;
-			walk_speed = walk_speed_base;
-		}
+		//
 	}
 	
-	//Other checks (while alive)
-	if(instance_exists(doorLeaningOn)){
-		if(current_state == ZOMBIE_STATE.DOORLEANSTART && doorLeaningOn.open){
-			animVar = 0;
-			current_state = ZOMBIE_STATE.DOORLEANFAIL;
-			currentSprite = spZombieDoorLeanFail;
-			shootable_map[? SHOOTABLE_MAP.HSP] += facing*0.25;
-			contact_cooldown += 40 + irandom(40);
-			doorLeaningOn = noone;
-		}
-		if(current_state == ZOMBIE_STATE.DOORLEANLOOP && doorLeaningOn.open){
-			doorLeaningOn = noone;
-			current_state = ZOMBIE_STATE.WALKING;
-			walk_speed = walk_speed_base;
-		}
-		if(current_state == ZOMBIE_STATE.CHARGING && !doorLeaningOn.open && currentSprite != spZombieDoorCharge){
-			doorLeaningOn = noone;
-			currentSprite = spZombieDoorCharge;
-			currentSpeed = 0;
-			animVar = 0;
-		}
-	}
 		
 }
 
-currently_attacking = current_state == ZOMBIE_STATE.CHARGING;
-damageTaken = currently_attacking ? 2 : 1;
+//currently_attacking = current_state == ZOMBIE_STATE.CHARGING;
+//damageTaken = currently_attacking ? 2 : 1;
 
 contact_cooldown-= localTD;
 
 
-//TODO: REFACTOR FOR BETTER PERFORMANCE
-//if(instance_place(x,y,oWall) == noone){
-//	prevX = x;
-//	prevY = y;
-//}
-//else if(!ignoreWalls){
-//	var attempts = 0;
-//	while(attempts < 100 && instance_place(x,y,oWall) != noone){
-//		x = lerp(x,prevX,0.1);
-//		y = lerp(y,prevY,0.1);
-//		attempts++;
-//		if(x == prevX && y == prevY){
-//			x++;
-//			y++;
-//			prevX = x;
-//			prevY = y;
-//		}
-//	}
-//}
-
 scCheckCollision2();
-
-if(current_state != ZOMBIE_STATE.DOORLEANFAIL && current_state != ZOMBIE_STATE.DOORLEANLOOP && current_state != ZOMBIE_STATE.DOORLEANSTART){
-	for (var i = 0; i < ds_list_size(touchingWalls); i++) {
-	    if(touchingWalls[| i].object_index == oDoorSliding && !touchingWalls[| i].open){
-			if(current_state == ZOMBIE_STATE.WALKING){
-				current_state = ZOMBIE_STATE.DOORLEANSTART;
-				animVar = 0;
-				shootable_map[? SHOOTABLE_MAP.HSP] = 0;
-				shootable_map[? SHOOTABLE_MAP.VSP] = 0;
-				walk_speed = 0;
-			}
-			//walk_speed = 0;
-			doorLeaningOn = touchingWalls[|i];
-			break;
-		}
-	}
-}
 
 var drawFacingAngle =point_direction(x,y,x + lengthdir_x(100,angleFacing), y - lengthdir_y(100, angleFacing));
 
 if(drawFacingAngle <= 120 || drawFacingAngle >= 290)
-	facing = 1;
-else
 	facing = -1;
+else
+	facing = 1;
 
 
 shotgunHit = false;

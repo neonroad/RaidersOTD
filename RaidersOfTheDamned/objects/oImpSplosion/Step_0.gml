@@ -28,10 +28,18 @@ if(!ds_list_empty(hitList) && timer == 60){
 			mob.shootable_map[? SHOOTABLE_MAP.HSP] += lengthdir_x(random(0.5),point_direction(x,y,mob.x,mob.y));
 			mob.shootable_map[? SHOOTABLE_MAP.VSP] += lengthdir_y(random(0.5),point_direction(x,y,mob.x,mob.y));
 			var damage = mob.object_index == oPlayer ? 1 : clamp(128-point_distance(x,y,mob.x,mob.y),1,128);
-			scDamage(mob,owner,damage,DAMAGE_TYPE.BULLET);
+			scDamage(mob,owner,damage,DAMAGE_TYPE.EXPLOSION);
+			
+			if(mob.object_index == oPlayer){
+				with(mob){
+					current_state = scStateManager(PLAYER_STATE.LAUNCHED);
+					shootable_map[?SHOOTABLE_MAP.HSP] -= lengthdir_x(10,point_direction(x,y,other.x,other.y));
+					shootable_map[?SHOOTABLE_MAP.VSP] += -lengthdir_y(10,point_direction(x,y,other.x,other.y));				
+				}	
+			}
 			
 			scParticleBurst(x,y,x+10,y+10,damage,damage*0.2,100,mob.bloodColor);
-			show_debug_message(damage);
+			//show_debug_message(damage);
 			
 		}
 	}
