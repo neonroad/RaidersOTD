@@ -87,54 +87,54 @@ if(room != rmTutorial && room != rmIntro && player != noone && instance_exists(p
 	if(spawnTimer <= 0){
 		spawnTimer = max(1,spawnTimerMax-irandom(roomTemp[? room]));
 		roomTemp[? room] = min(100, roomTemp[?room]+1);
-		repeat max(1,ceil(roomTemp%25)){
-			//var zomb = instance_create_layer(x, y, "Mobs", oMobProphet /*choose(oMobProphet, oMobZombie,oMobWormDog)*/);	
-			var specialChance = roomTemp[? room] > irandom(120);
-			var zomb = noone;
-			//if(specialChance){
-			//	//zomb = instance_create_layer(x, y, "Mobs", choose(oMobGrunt, oMobIllusionist, oMobWarriorBug, oMobProphet,oMobZombie,oMobZombie,oMobZombie,oMobWormDog,oMobWormDog));	
-			//	roomTemp[? room] *= 1.05;
-			//}
-			//else
+		//repeat max(1,ceil(roomTemp%25)){
+		//	//var zomb = instance_create_layer(x, y, "Mobs", oMobProphet /*choose(oMobProphet, oMobZombie,oMobWormDog)*/);	
+		//	var specialChance = roomTemp[? room] > irandom(120);
+		//	var zomb = noone;
+		//	//if(specialChance){
+		//	//	//zomb = instance_create_layer(x, y, "Mobs", choose(oMobGrunt, oMobIllusionist, oMobWarriorBug, oMobProphet,oMobZombie,oMobZombie,oMobZombie,oMobWormDog,oMobWormDog));	
+		//	//	roomTemp[? room] *= 1.05;
+		//	//}
+		//	//else
 				
-			zomb = instance_create_layer(x, y, "Mobs", choose(oMobRockHead,oMobZombie)/*choose(/*oMobImp,oMobProphet,oMobZombie,oMobZombie,oMobZombie,oMobWormDog,oMobWormDog)*/);	
+		//	zomb = instance_create_layer(x, y, "Mobs", choose(oMobRockHead,oMobZombie)/*choose(/*oMobImp,oMobProphet,oMobZombie,oMobZombie,oMobZombie,oMobWormDog,oMobWormDog)*/);	
 			
 			
-			zomb.ai_start_cooldown = 60;
-			zomb.invisible = makeInvisMonsters;
-			var xsign = choose(-1,1,0);
-			var ysign = choose(-1,1,0);
+		//	zomb.ai_start_cooldown = 60;
+		//	zomb.invisible = makeInvisMonsters;
+		//	var xsign = choose(-1,1,0);
+		//	var ysign = choose(-1,1,0);
 		
-			if(xsign == 0){
-				zomb.x = irandom_range(camera_get_view_x(viewCamera), camera_get_view_width(viewCamera));	
-				ysign = choose(-1,1);
-			}
+		//	if(xsign == 0){
+		//		zomb.x = irandom_range(camera_get_view_x(viewCamera), camera_get_view_width(viewCamera));	
+		//		ysign = choose(-1,1);
+		//	}
 		
-			if(ysign == 0){
-				zomb.y = irandom_range(camera_get_view_y(viewCamera), camera_get_view_height(viewCamera));	
-				xsign = choose(-1,1);
-			}
+		//	if(ysign == 0){
+		//		zomb.y = irandom_range(camera_get_view_y(viewCamera), camera_get_view_height(viewCamera));	
+		//		xsign = choose(-1,1);
+		//	}
 		
-			if(xsign == 1){
-				zomb.x = irandom_range(64,128)+camera_get_view_x(viewCamera)+camera_get_view_width(viewCamera);	
-			}
-			else zomb.x = camera_get_view_x(viewCamera)-irandom_range(64,128);
+		//	if(xsign == 1){
+		//		zomb.x = irandom_range(64,128)+camera_get_view_x(viewCamera)+camera_get_view_width(viewCamera);	
+		//	}
+		//	else zomb.x = camera_get_view_x(viewCamera)-irandom_range(64,128);
 		
-			if(ysign == 1){
-				zomb.y = irandom_range(64,128)+camera_get_view_y(viewCamera)+camera_get_view_height(viewCamera);	
-			}
-			else zomb.y = camera_get_view_y(viewCamera)-irandom_range(64,128);
+		//	if(ysign == 1){
+		//		zomb.y = irandom_range(64,128)+camera_get_view_y(viewCamera)+camera_get_view_height(viewCamera);	
+		//	}
+		//	else zomb.y = camera_get_view_y(viewCamera)-irandom_range(64,128);
 			
-			with(zomb){
-				var interiorFound = instance_place(x,y,oInteriorArea);
-				if(interiorFound != noone){
-					var doorFound = interiorFound.entrances[0];
-					x = interiorFound.entrances[0].x+16;
-					y = interiorFound.entrances[0].y+16;
-					//Move instance "out" of room
-				}
-			}
-		}
+		//	with(zomb){
+		//		var interiorFound = instance_place(x,y,oInteriorArea);
+		//		if(interiorFound != noone){
+		//			var doorFound = interiorFound.entrances[0];
+		//			x = interiorFound.entrances[0].x+16;
+		//			y = interiorFound.entrances[0].y+16;
+		//			//Move instance "out" of room
+		//		}
+		//	}
+		//}
 		
 		
 	}
@@ -181,3 +181,18 @@ camera_set_view_pos(viewCamera, xIs - (cameraSize*0.5),yIs - (cameraSize*0.5));
 //camera_set_view_pos(viewCamera, floor(xIs - (cameraSize*0.5)),floor(yIs - (cameraSize*0.5)));
 
 scUIShakeControl();
+
+
+instance_activate_object(oDecorParent);
+collision_rectangle_list(oPlayer.x-cameraSize*2,oPlayer.y-cameraSize*2,oPlayer.x+cameraSize*2,oPlayer.y+cameraSize*2,oDecorParent,false,false,decorationList,false);
+
+for (var i = 0; i < instance_number(oDecorParent); i++) {
+    instance_deactivate_object(instance_find(oDecorParent,i));
+}
+
+for (var i = 0; i < ds_list_size(decorationList); i++) {
+    instance_activate_object(decorationList[|i]);
+}
+ds_list_clear(decorationList);
+
+

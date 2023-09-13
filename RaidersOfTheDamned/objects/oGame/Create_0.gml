@@ -83,6 +83,7 @@ introSpawn = false;
 gameStart = false;
 roomArray = [rmA1,rmB1,rmC1,rmA2,rmB2,rmC2,rmA3,rmB3,rmC3];
 
+decorationList = ds_list_create();
 
 
 //camera_set_view_size(view_camera[0], cameraSize,cameraSize);
@@ -90,5 +91,8 @@ window_set_size(cameraSize,cameraSize);
 
 instance_create_depth(x,y,600,oDecalSurf);
 instance_create_depth(x,y,700,oDecalSurfW);
+
+
+
 //x = -500;
 //y = -500;

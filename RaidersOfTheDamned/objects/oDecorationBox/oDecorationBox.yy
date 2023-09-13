@@ -14,7 +14,10 @@
     "name": "Decoration",
     "path": "folders/Objects/Decoration.yy",
   },
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "oDecorParent",
+    "path": "objects/oDecorParent/oDecorParent.yy",
+  },
   "persistent": false,
   "physicsAngularDamping": 0.1,
   "physicsDensity": 0.5,
