@@ -8,8 +8,12 @@ function scStateManager(stateRequested, entity=id){
 	
 	if(stateRequested == PLAYER_STATE.INVENTORYACCESS) return PLAYER_STATE.INVENTORYACCESS;
 	
-	if(stateRequested == PLAYER_STATE.LAUNCHED && iframes <= 0){
-		return PLAYER_STATE.LAUNCHED;
+	
+	if((stateRequested == PLAYER_STATE.LAUNCHED || 
+		stateRequested == PLAYER_STATE.GRABBED)
+		&& iframes <= 0){
+		
+		return stateRequested;
 	}
 	
 	if(stateRequested == PLAYER_STATE.RECOIL && entity.current_state == PLAYER_STATE.PLAYING) return PLAYER_STATE.RECOIL;
@@ -21,6 +25,7 @@ function scStateManager(stateRequested, entity=id){
 	if(stateRequested == PLAYER_STATE.PLAYING && 
 	(entity.current_state != PLAYER_STATE.INVENTORYACCESS
 	&& entity.current_state != PLAYER_STATE.TRANSITIONING 
+	&& entity.current_state != PLAYER_STATE.GRABBED
 	&& entity.current_state != PLAYER_STATE.ROLLING
 	&& (entity.current_state != PLAYER_STATE.HURT || entity.current_state == PLAYER_STATE.ENDSTUN) 
 	&& entity.current_state != PLAYER_STATE.LAUNCHED
