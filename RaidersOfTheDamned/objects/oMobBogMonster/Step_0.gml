@@ -225,7 +225,16 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 		else if(current_state == BOG_STATE.ATTACKING){
 			animVar = sprite_get_number(currentSprite)-1;
 			walk_speed = 0;
-			if(instance_exists(attacking) && attacking.current_state == PLAYER_STATE.GRABBED) scDamage(attacking, id, 500, DAMAGE_TYPE.BULLET);
+			if(instance_exists(attacking) && attacking.current_state == PLAYER_STATE.GRABBED){
+				attacking.deadSprite = spPlayerDieSubmerged;
+				scDamage(attacking, id, 500, DAMAGE_TYPE.BULLET);
+			}
+			else{
+				current_state = BOG_STATE.IDLE;	
+				animVar = 0;
+				currentSprite = idleSprite;
+				walk_speed = 0;
+			}
 		}
 	}
 	

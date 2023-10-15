@@ -12,6 +12,6 @@ scParticleBurst(bbox_left,bbox_top,bbox_right,bbox_bottom,5,5,100,bloodColor,,,,
 audio_play_sound_at(snDie1, x, y, 0, 60, 240, 0.5, false, 2);
 
 var item = layer_sequence_create("ItemsAssets",x+16,y+16,sqItemBounce);
-var newItem = instance_create_layer(x,y,"Items",oItemWorld, {itemID : ITEMS.AMMO_2});
+var newItem = instance_create_layer(x,y,"Items",oItemWorld, {itemID : ITEMS.AMMO_3});
 var itemSeq = layer_sequence_get_instance(item);
 sequence_instance_override_object(itemSeq,oItemWorld,newItem);

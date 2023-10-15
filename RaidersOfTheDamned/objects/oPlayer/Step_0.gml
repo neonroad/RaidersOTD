@@ -26,7 +26,7 @@ if(room != rmIntro && scRoomChanged()){
 
 var maxFrameAnim = sprite_get_number(currentSprite)-1;
 if(animVar >= maxFrameAnim){
-	if(currentSprite == spPlayerDie){
+	if(current_state == PLAYER_STATE.DEAD){
 		animVar = maxFrameAnim;
 	}
 	if(current_state == PLAYER_STATE.INVENTORYACCESS){
@@ -49,9 +49,9 @@ if(animVar >= maxFrameAnim){
 	}
 }
 
-if(shootable_map[?SHOOTABLE_MAP.DEAD] && currentSprite != spPlayerDie){
+if(shootable_map[?SHOOTABLE_MAP.DEAD] && currentSprite != deadSprite){
 	alphaTransition = 0;
-	currentSprite = spPlayerDie;
+	currentSprite = deadSprite;
 	animVar = 0;
 	image_speed = 0.3;
 	audio_play_sound_at(snDie2, x, y, 0, 60, 240, 0.5, false, 2);

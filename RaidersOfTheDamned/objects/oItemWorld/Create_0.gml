@@ -21,6 +21,10 @@ switch (itemID) {
         sprite_index = spItemShotgun;
 		itemName = "Shotgun";
         break;
+	case ITEMS.WEAPON_RIFLE:
+        sprite_index = spItemRifle;
+		itemName = "Rifle";
+        break;
 	case ITEMS.KEYCARD_GREEN:
 		sprite_index = spItemGreenKeycard;
 		keyItem = true;
@@ -38,13 +42,19 @@ switch (itemID) {
 		stackAmount = 4;
 	    stackMax = 24;
 	    break;	
+	case ITEMS.AMMO_3:
+        sprite_index = spItemAmmoRifle;
+		itemName = "Rifle Ammo";
+		stackAmount = 16;
+	    stackMax = 64;
+	    break;
     
 }
 inventorySprite = scGetInventorySprite(itemID, id);
 gridSpace = scGetGridSpace(itemID, id);
 
 
-if((itemID == ITEMS.WEAPON_SHOTGUN || itemID == ITEMS.WEAPON_PISTOL)){
+if((itemID == ITEMS.WEAPON_SHOTGUN || itemID == ITEMS.WEAPON_RIFLE || itemID == ITEMS.WEAPON_PISTOL)){
 			if(!variable_instance_exists(id,"itemMap") || !ds_exists(itemMap, ds_type_map)){
 				itemMap = ds_map_create(); //remember to delete map
 				var _map = itemMap;

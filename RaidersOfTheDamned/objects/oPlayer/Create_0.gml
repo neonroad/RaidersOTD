@@ -81,6 +81,8 @@ weaponItemSprite = noone;
 gunRecoilX = 0;
 gunRecoilY = 0;
 
+deadSprite = spPlayerDie;
+
 shootable_map[?SHOOTABLE_MAP.HEALTH_START] = 3;
 shootable_map[? SHOOTABLE_MAP.HEALTH] = shootable_map[?SHOOTABLE_MAP.HEALTH_START];
 
