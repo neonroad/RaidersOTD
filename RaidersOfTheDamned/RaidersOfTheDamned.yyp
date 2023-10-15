@@ -46,6 +46,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Interactable","folderPath":"folders/Sprites/Interactable.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Items","folderPath":"folders/Sprites/Items.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Mobs","folderPath":"folders/Sprites/Mobs.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"BogCreep","folderPath":"folders/Sprites/Mobs/BogCreep.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Cardboard","folderPath":"folders/Sprites/Mobs/Cardboard.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"CrystalCloud","folderPath":"folders/Sprites/Mobs/CrystalCloud.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Fungus","folderPath":"folders/Sprites/Mobs/Fungus.yy",},
@@ -66,7 +67,6 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Inventory","folderPath":"folders/Sprites/UI/Inventory.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"BogCreep","folderPath":"folders/Sprites/Mobs/BogCreep.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"NOTJAMCHUNKYSANS.TTF","CopyToMask":-1,"filePath":"datafiles",},
@@ -74,7 +74,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.8.1.102",
+    "IDEVersion": "2023.8.2.108",
   },
   "resources": [
     {"id":{"name":"spProphetIdleDie","path":"sprites/spProphetIdleDie/spProphetIdleDie.yy",},},
@@ -314,6 +314,7 @@
     {"id":{"name":"spWarriorBugIdleRight","path":"sprites/spWarriorBugIdleRight/spWarriorBugIdleRight.yy",},},
     {"id":{"name":"spProphetChargeE","path":"sprites/spProphetChargeE/spProphetChargeE.yy",},},
     {"id":{"name":"spItemLaserPointer","path":"sprites/spItemLaserPointer/spItemLaserPointer.yy",},},
+    {"id":{"name":"spUIQTEEscape","path":"sprites/spUIQTEEscape/spUIQTEEscape.yy",},},
     {"id":{"name":"snWhoosh1","path":"sounds/snWhoosh1/snWhoosh1.yy",},},
     {"id":{"name":"spVampire_Walk","path":"sprites/spVampire_Walk/spVampire_Walk.yy",},},
     {"id":{"name":"snMusicRoam","path":"sounds/snMusicRoam/snMusicRoam.yy",},},
@@ -354,6 +355,7 @@
     {"id":{"name":"spDecorControlsKeys","path":"sprites/spDecorControlsKeys/spDecorControlsKeys.yy",},},
     {"id":{"name":"snDie2","path":"sounds/snDie2/snDie2.yy",},},
     {"id":{"name":"spShovelAttack2","path":"sprites/spShovelAttack2/spShovelAttack2.yy",},},
+    {"id":{"name":"spPlayerStruggle","path":"sprites/spPlayerStruggle/spPlayerStruggle.yy",},},
     {"id":{"name":"spItemHealth","path":"sprites/spItemHealth/spItemHealth.yy",},},
     {"id":{"name":"spPlayerLaunch","path":"sprites/spPlayerLaunch/spPlayerLaunch.yy",},},
     {"id":{"name":"spParticle_HitPart","path":"sprites/spParticle_HitPart/spParticle_HitPart.yy",},},

@@ -118,7 +118,25 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 	if(current_state == PLAYER_STATE.SLEEPWAKEUP){
 		image_speed = 0.2;
 	}
-	
+	if(current_state == PLAYER_STATE.GRABBED){
+		currentSprite = spPlayerStruggle;
+		image_speed = 0.2;
+		
+		if(keyboard_check_pressed(ord("A")) && uiQTEFrame % 2 == 0){
+			uiQTEFrame++;
+			uiTime = 0;
+		}
+		if(keyboard_check_pressed(ord("D")) && uiQTEFrame % 2 != 0){
+			uiQTEFrame++;
+			uiTime = 0;
+		}
+		
+		if(uiQTEFrame > 10){
+			uiQTEFrame = 0;
+			current_state = PLAYER_STATE.PLAYING;
+			
+		}
+	}
 	scCheckInventory();
 	
 	var hsp = shootable_map[? SHOOTABLE_MAP.HSP];

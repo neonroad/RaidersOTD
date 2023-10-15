@@ -16,6 +16,12 @@ draw_sprite_ext(currentSprite, floor(animVar), x + xModDraw, y + yModDraw, scale
 if(current_state == PLAYER_STATE.PLAYING)
 	scDrawArm(false);
 
+if(current_state == PLAYER_STATE.GRABBED){
+	uiTime += 0.2;
+	uiFlash = abs(sin(uiTime));
+	draw_sprite_ext(spUIQTEEscape, uiQTEFrame, x,y, 1, 1, 0, c_white, uiFlash);	
+}
+
 //draw_rectangle(bbox_left,bbox_top,bbox_right,bbox_bottom,false);
 //draw_text(x,bbox_bottom, move_hsp);
 //draw_text(x,bbox_bottom+10, shootable_map[? SHOOTABLE_MAP.HSP]);

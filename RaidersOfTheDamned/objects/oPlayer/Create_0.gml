@@ -45,6 +45,10 @@ interactList = [];
 icursor = noone;
 keyItems = [];
 
+uiQTEFrame = 0;
+uiFlash = 0;
+uiTime = 0;
+
 cameraControl = true;
 cameraPivotX = x;
 cameraPivotY = y;

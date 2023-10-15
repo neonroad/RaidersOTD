@@ -185,8 +185,8 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 					animVar = 0;
 					currentSprite = attackSprite;
 					attacking = ent_hit;
-					x = ent_hit.x;
-					y = ent_hit.bbox_bottom+5;
+					x = (facing == 1 ? ent_hit.bbox_left : ent_hit.bbox_right);
+					y = ent_hit.bbox_bottom+10;
 					with(attacking){
 						current_state = scStateManager(PLAYER_STATE.GRABBED);	
 					}
@@ -225,7 +225,7 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 		else if(current_state == BOG_STATE.ATTACKING){
 			animVar = sprite_get_number(currentSprite)-1;
 			walk_speed = 0;
-			if(instance_exists(attacking)) scDamage(attacking, id, 500, DAMAGE_TYPE.BULLET);
+			if(instance_exists(attacking) && attacking.current_state == PLAYER_STATE.GRABBED) scDamage(attacking, id, 500, DAMAGE_TYPE.BULLET);
 		}
 	}
 	
