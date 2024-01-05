@@ -12,4 +12,4 @@ flying = false;
 flySpeed = 0.5;
 randdir = 0;
 
-image_blend = c_gray;
+image_blend = c_black;
