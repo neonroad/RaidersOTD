@@ -7,7 +7,9 @@
   ],
   "configs": {
     "children": [
-      {"children":[],"name":"noIntro",},
+      {"children":[
+          {"children":[],"name":"bugTest",},
+        ],"name":"noIntro",},
       {"children":[],"name":"Test",},
     ],
     "name": "Default",

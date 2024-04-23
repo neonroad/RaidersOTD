@@ -22,7 +22,7 @@ if(logoY < display_get_gui_height()*0.6){
 
 if(logoTimer > 120){
 	if(room == rmIntro){ 
-		room_goto(rmA1);
+		room_goto(rmDemo1);
 		//room_goto(choose(rmA1,rmA2,rmA3,rmB1,rmB3,rmC1,rmC2,rmC3)); 
 		//audio_sound_gain(oSoundSystem.current_song, 0, 3000);	
 		oGame.gameStart = true;

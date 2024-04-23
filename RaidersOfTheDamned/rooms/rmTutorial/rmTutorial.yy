@@ -16,9 +16,7 @@
     {"name":"inst_178B7E7D","path":"rooms/rmTutorial/rmTutorial.yy",},
     {"name":"inst_6AFEF8F","path":"rooms/rmTutorial/rmTutorial.yy",},
     {"name":"inst_272027DB","path":"rooms/rmTutorial/rmTutorial.yy",},
-    {"name":"inst_7EF0BCCE","path":"rooms/rmTutorial/rmTutorial.yy",},
     {"name":"inst_789E1232","path":"rooms/rmTutorial/rmTutorial.yy",},
-    {"name":"inst_4897051F","path":"rooms/rmTutorial/rmTutorial.yy",},
     {"name":"inst_2825703B","path":"rooms/rmTutorial/rmTutorial.yy",},
     {"name":"inst_6525A338","path":"rooms/rmTutorial/rmTutorial.yy",},
     {"name":"inst_7F2B4136","path":"rooms/rmTutorial/rmTutorial.yy",},
@@ -82,6 +80,10 @@
     {"name":"inst_6FF8898A","path":"rooms/rmTutorial/rmTutorial.yy",},
     {"name":"inst_41225EE1","path":"rooms/rmTutorial/rmTutorial.yy",},
     {"name":"inst_424F35CE","path":"rooms/rmTutorial/rmTutorial.yy",},
+    {"name":"inst_19B7C63E","path":"rooms/rmTutorial/rmTutorial.yy",},
+    {"name":"inst_75FA9CEF","path":"rooms/rmTutorial/rmTutorial.yy",},
+    {"name":"inst_25AF665D","path":"rooms/rmTutorial/rmTutorial.yy",},
+    {"name":"inst_36A868BE","path":"rooms/rmTutorial/rmTutorial.yy",},
   ],
   "isDnd": false,
   "layers": [
@@ -130,9 +132,7 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_140C3D1B","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oWall","path":"objects/oWall/oWall.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1600.0,"y":1920.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_4778A88C","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oWall","path":"objects/oWall/oWall.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":11.5625,"x":2112.0,"y":1696.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
-    {"resourceType":"GMRAssetLayer","resourceVersion":"1.0","name":"ItemsAssets","assets":[
-        {"resourceType":"GMRSequenceGraphic","resourceVersion":"1.0","name":"graphic_47D48255","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"sequenceId":{"name":"sqItemBounce","path":"sequences/sqItemBounce/sqItemBounce.yy",},"x":1920.0,"y":1728.0,},
-      ],"depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
+    {"resourceType":"GMRAssetLayer","resourceVersion":"1.0","name":"ItemsAssets","assets":[],"depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Items","depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_FCFFDFD","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oNotes","path":"objects/oNotes/oNotes.yy",},"properties":[
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oNotes","path":"objects/oNotes/oNotes.yy",},"propertyId":{"name":"textUsed","path":"objects/oNotes/oNotes.yy",},"value":"Use WASD to MOVE. Head right for more help.",},
@@ -152,9 +152,6 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_272027DB","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oItem","path":"objects/oItem/oItem.yy",},"properties":[
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oItem","path":"objects/oItem/oItem.yy",},"propertyId":{"name":"itemEnum","path":"objects/oItem/oItem.yy",},"value":"ITEMS.AMMO_1",},
           ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1417.0,"y":829.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_7EF0BCCE","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oItem","path":"objects/oItem/oItem.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oItem","path":"objects/oItem/oItem.yy",},"propertyId":{"name":"itemEnum","path":"objects/oItem/oItem.yy",},"value":"ITEMS.AMMO_2",},
-          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1688.0,"y":1641.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_789E1232","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oItem","path":"objects/oItem/oItem.yy",},"properties":[
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oItem","path":"objects/oItem/oItem.yy",},"propertyId":{"name":"itemEnum","path":"objects/oItem/oItem.yy",},"value":"ITEMS.AMMO_3",},
           ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1346.0,"y":827.0,},
@@ -164,9 +161,6 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_2C0341B","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oNotes","path":"objects/oNotes/oNotes.yy",},"properties":[
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oNotes","path":"objects/oNotes/oNotes.yy",},"propertyId":{"name":"textUsed","path":"objects/oNotes/oNotes.yy",},"value":"Pick up WEAPONS to fight.",},
           ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1491.0,"y":828.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_4897051F","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oItem","path":"objects/oItem/oItem.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oItem","path":"objects/oItem/oItem.yy",},"propertyId":{"name":"itemEnum","path":"objects/oItem/oItem.yy",},"value":"ITEMS.WEAPON_SHOTGUN",},
-          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1663.0,"y":1608.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_2825703B","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oItem","path":"objects/oItem/oItem.yy",},"properties":[
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oItem","path":"objects/oItem/oItem.yy",},"propertyId":{"name":"itemEnum","path":"objects/oItem/oItem.yy",},"value":"ITEMS.WEAPON_RIFLE",},
           ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1527.0,"y":831.0,},
@@ -194,6 +188,18 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_50594C67","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oNotes","path":"objects/oNotes/oNotes.yy",},"properties":[
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oNotes","path":"objects/oNotes/oNotes.yy",},"propertyId":{"name":"textUsed","path":"objects/oNotes/oNotes.yy",},"value":"Press R to reload.",},
           ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1826.0,"y":830.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_19B7C63E","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oItemSpawner","path":"objects/oItemSpawner/oItemSpawner.yy",},"properties":[
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oItemSpawner","path":"objects/oItemSpawner/oItemSpawner.yy",},"propertyId":{"name":"itemToSpawn","path":"objects/oItemSpawner/oItemSpawner.yy",},"value":"ITEMS.WEAPON_SHOTGUN",},
+          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1685.0,"y":1632.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_75FA9CEF","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oItemSpawner","path":"objects/oItemSpawner/oItemSpawner.yy",},"properties":[
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oItemSpawner","path":"objects/oItemSpawner/oItemSpawner.yy",},"propertyId":{"name":"itemToSpawn","path":"objects/oItemSpawner/oItemSpawner.yy",},"value":"ITEMS.AMMO_2",},
+          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1664.0,"y":1649.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_25AF665D","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oItemSpawner","path":"objects/oItemSpawner/oItemSpawner.yy",},"properties":[
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oItemSpawner","path":"objects/oItemSpawner/oItemSpawner.yy",},"propertyId":{"name":"itemToSpawn","path":"objects/oItemSpawner/oItemSpawner.yy",},"value":"ITEMS.AMMO_2",},
+          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1694.0,"y":1655.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_36A868BE","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oItemSpawner","path":"objects/oItemSpawner/oItemSpawner.yy",},"properties":[
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oItemSpawner","path":"objects/oItemSpawner/oItemSpawner.yy",},"propertyId":{"name":"itemToSpawn","path":"objects/oItemSpawner/oItemSpawner.yy",},"value":"ITEMS.WEAPON_PISTOL",},
+          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1898.0,"y":1708.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Instances","depth":300,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_7F2B4136","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oParticleSystem","path":"objects/oParticleSystem/oParticleSystem.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},

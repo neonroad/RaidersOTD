@@ -17,7 +17,7 @@ if(global.inventoryOpen){
 else{
 	screenAlpha = lerp(screenAlpha,0,0.05);
 	
-	spdY = lerp(spdY, (250-packY)*0.5, 0.2);
+	spdY = lerp(spdY, (room_height-packY)*0.5, 0.2);
 	packY += spdY;
 	draw_sprite_ext(spUIInventoryPack,0,0,packY,1,1,0,c_white,1);
 }

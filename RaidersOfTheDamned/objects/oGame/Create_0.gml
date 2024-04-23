@@ -14,6 +14,7 @@ if (!_joined)
 #macro Default:config "Default"
 #macro noIntro:config "noIntro"
 #macro Test:config "Test"
+#macro bugTest:config "bugTest"
 
 randomise();
 
@@ -57,7 +58,7 @@ roomHeight = 1600;
 roomTest = rmTutorial;
 viewportIndex = 0;
 viewCamera = view_camera[0];
-cameraSize = 240;
+cameraSize = 240*4;
 xTo = 0;
 yTo = 0;
 yIs = 0;

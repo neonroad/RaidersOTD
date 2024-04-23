@@ -20,9 +20,16 @@ function warriorBugShortHop(){
 		shootable_map[? SHOOTABLE_MAP.VSP] = lengthdir_y(2+abs(target.shootable_map[? SHOOTABLE_MAP.VSP]*2),point_direction(x,y,target.x,target.y));
 	}
 }
+	
+function warriorBugRoar(){
+	contact_cooldown = contact_cooldown_max;
+	currentSprite = spWarriorBugRoarIdle;
+	walk_speed = 0;
+	animVar = 0;
+	current_state = WARRIOR_STATE.ROAR;
+	part_particles_create(global.particleSystem, x, bbox_top, oParticleSystem.particle_exclam, 1);	
+}
 
-ai_start_cooldown-= localTD;
-if(ai_start_cooldown == -1) ai_start_cooldown = 0;
 
 animVar += image_speed*localTD;
 
@@ -60,7 +67,8 @@ if(shootable_map[?SHOOTABLE_MAP.DEAD]){
 
 
 //if(ai_start_cooldown > 0 && instance_place(x,y,oWall) != noone) instance_destroy();
-if(ai_start_cooldown > 0) exit;
+if(ai_start_cooldown != 0) exit;
+else if(ai_start_cooldown > 0) ai_start_cooldown-= localTD;
 
 
 
@@ -91,12 +99,7 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 		//Charge
 		if(current_state == WARRIOR_STATE.WALKING && contact_cooldown <= 0 && oPlayer.iframes <= 0 && collision_line(x,y,target.x,target.y,oWall, false,true) == noone && point_distance(x,y,target.x,target.y)<=attack_range
 		&& target.y > y+30){
-			contact_cooldown = contact_cooldown_max;
-			currentSprite = spWarriorBugRoarIdle;
-			walk_speed = 0;
-			animVar = 0;
-			current_state = WARRIOR_STATE.ROAR;
-			part_particles_create(global.particleSystem, x, bbox_top, oParticleSystem.particle_exclam, 1);
+			warriorBugRoar();
 		}
 		else if(current_state == WARRIOR_STATE.WALKING && oPlayer.iframes <= 0 && contact_cooldown <= 0 && collision_line(x,y,target.x,target.y,oWall, false,true) == noone && point_distance(x,y,target.x,target.y)<=attack_range
 		&& target.y < y && point_distance(x,y,target.x,target.y)<25){
@@ -255,14 +258,14 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 		shootable_map[? SHOOTABLE_MAP.HSP] = 0;	
 		shootable_map[? SHOOTABLE_MAP.VSP] = 0;
 		
-		if(instance_exists(target) && point_distance(x,y,target.x,target.y) > 200){
-			current_state = WARRIOR_STATE.TELEPORTING;	
-			x = target.x;
-			y = target.y;
-			animVar = 0;
-			currentSprite = spWarriorBugEnterFall;
-			oGame.combatTimer += 600;
-		}
+		//if(instance_exists(target) && point_distance(x,y,target.x,target.y) > 200){
+		//	current_state = WARRIOR_STATE.TELEPORTING;	
+		//	x = target.x;
+		//	y = target.y;
+		//	animVar = 0;
+		//	currentSprite = spWarriorBugEnterFall;
+		//	oGame.combatTimer += 600;
+		//}
 	}
 	
 	if(current_state == WARRIOR_STATE.ATTACKING){
@@ -292,6 +295,7 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 			currentSprite = currentSprite == spWarriorBugIdleLeft ? spWarriorBugIdleRight : spWarriorBugIdleLeft;
 			animVar = 0;
 			if(instance_exists(target)) scLookAt(target.x,target.y);
+			
 		}
 		
 		else if(current_state == WARRIOR_STATE.ROAR){
@@ -299,6 +303,10 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 			animVar = 0;
 			currentSprite = spWarriorBugChargeForward;
 			walk_speed = walk_speed_base;
+			
+			if(instance_exists(eventOwner) && eventOwner.eventTriggered && !eventOwner.eventOver){
+				eventOwner.eventOver = true;	
+			}
 		}
 		else if(current_state == WARRIOR_STATE.CHARGING){
 			animVar = 0;

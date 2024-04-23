@@ -9,7 +9,7 @@ if(roomToGo != noone){
 	if(room == rmTutorial){
 		scDropAll(player);
 		intro = true;
-		if(config == "noIntro"){
+		if(config == "noIntro" || config == "bugTest"){
 			roomToGo = rmDemo1;
 			oGame.gameStart = true;
 			oGame.introSpawn = true;

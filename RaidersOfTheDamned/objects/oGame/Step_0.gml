@@ -87,97 +87,35 @@ if(room != rmTutorial && room != rmIntro && player != noone && instance_exists(p
 	if(spawnTimer <= 0){
 		spawnTimer = max(1,spawnTimerMax-irandom(roomTemp[? room]));
 		roomTemp[? room] = min(100, roomTemp[?room]+1);
-		//repeat max(1,ceil(roomTemp%25)){
-		//	//var zomb = instance_create_layer(x, y, "Mobs", oMobProphet /*choose(oMobProphet, oMobZombie,oMobWormDog)*/);	
-		//	var specialChance = roomTemp[? room] > irandom(120);
-		//	var zomb = noone;
-		//	//if(specialChance){
-		//	//	//zomb = instance_create_layer(x, y, "Mobs", choose(oMobGrunt, oMobIllusionist, oMobWarriorBug, oMobProphet,oMobZombie,oMobZombie,oMobZombie,oMobWormDog,oMobWormDog));	
-		//	//	roomTemp[? room] *= 1.05;
-		//	//}
-		//	//else
-				
-		//	zomb = instance_create_layer(x, y, "Mobs", choose(oMobRockHead,oMobZombie)/*choose(/*oMobImp,oMobProphet,oMobZombie,oMobZombie,oMobZombie,oMobWormDog,oMobWormDog)*/);	
-			
-			
-		//	zomb.ai_start_cooldown = 60;
-		//	zomb.invisible = makeInvisMonsters;
-		//	var xsign = choose(-1,1,0);
-		//	var ysign = choose(-1,1,0);
-		
-		//	if(xsign == 0){
-		//		zomb.x = irandom_range(camera_get_view_x(viewCamera), camera_get_view_width(viewCamera));	
-		//		ysign = choose(-1,1);
-		//	}
-		
-		//	if(ysign == 0){
-		//		zomb.y = irandom_range(camera_get_view_y(viewCamera), camera_get_view_height(viewCamera));	
-		//		xsign = choose(-1,1);
-		//	}
-		
-		//	if(xsign == 1){
-		//		zomb.x = irandom_range(64,128)+camera_get_view_x(viewCamera)+camera_get_view_width(viewCamera);	
-		//	}
-		//	else zomb.x = camera_get_view_x(viewCamera)-irandom_range(64,128);
-		
-		//	if(ysign == 1){
-		//		zomb.y = irandom_range(64,128)+camera_get_view_y(viewCamera)+camera_get_view_height(viewCamera);	
-		//	}
-		//	else zomb.y = camera_get_view_y(viewCamera)-irandom_range(64,128);
-			
-		//	with(zomb){
-		//		var interiorFound = instance_place(x,y,oInteriorArea);
-		//		if(interiorFound != noone){
-		//			var doorFound = interiorFound.entrances[0];
-		//			x = interiorFound.entrances[0].x+16;
-		//			y = interiorFound.entrances[0].y+16;
-		//			//Move instance "out" of room
-		//		}
-		//	}
-		//}
 		
 		
 	}
 }
 
 if(gameStart){
-	//evacTimer-= global.TD;
-	//if(evacTimer < 0){
-	//	evacRoom = irandom(array_length(roomArray)-1);	
-	//	instance_create_layer(x, y, "Instances", oEvac);
-	//}
+
 	
 	combatTimer = max(0, combatTimer-1);
-	
-	
-	
-	
-	//if(player.weaponEquipped == ITEMS.WEAPON_SNIPER){
-	//	cameraSize = lerp(cameraSize,300,0.05*global.TD);	
-	//}
-	//else cameraSize = lerp(cameraSize, 240, 0.05*global.TD);
-	//camera_set_view_size(viewCamera, cameraSize, cameraSize);
-	//camera_set_view_border(viewCamera, camera_get_view_width(viewCamera)*.5,camera_get_view_height(viewCamera)*.5);
-	
+
 }
 
 if(player.cameraControl){
-	xTo = player.x+player.shootable_map[? SHOOTABLE_MAP.HSP];
-	yTo = player.y+player.shootable_map[? SHOOTABLE_MAP.VSP];
+	xTo = player.x+player.shootable_map[? SHOOTABLE_MAP.HSP]*1;
+	yTo = player.y+player.shootable_map[? SHOOTABLE_MAP.VSP]*1;
 
-	xIs += (xTo - xIs)/25;//player.shootable_map[? SHOOTABLE_MAP.HSP] //(xTo - xIs)/25;
-	yIs += (yTo - yIs)/25;
+	xIs += (xTo - xIs)/10;//player.shootable_map[? SHOOTABLE_MAP.HSP] //(xTo - xIs)/25;
+	yIs += (yTo - yIs)/10;
 }
 else{
 	xTo = player.cameraPivotX;
 	yTo = player.cameraPivotY;	
 
-	xIs += (xTo - xIs)/25;//player.shootable_map[? SHOOTABLE_MAP.HSP] //(xTo - xIs)/25;
-	yIs += (yTo - yIs)/25;
+	xIs += (xTo - xIs)/5;//player.shootable_map[? SHOOTABLE_MAP.HSP] //(xTo - xIs)/25;
+	yIs += (yTo - yIs)/5;
 }
 //player.shootable_map[? SHOOTABLE_MAP.VSP]//(yTo - yIs)/25;
 
-camera_set_view_pos(viewCamera, xIs - (cameraSize*0.5),yIs - (cameraSize*0.5));
+camera_set_view_pos(viewCamera, xIs-(camera_get_view_width(view_camera[0])*0.5),yIs-(camera_get_view_height(view_camera[0])*0.5));
 //camera_set_view_pos(viewCamera, floor(xIs - (cameraSize*0.5)),floor(yIs - (cameraSize*0.5)));
 
 scUIShakeControl();

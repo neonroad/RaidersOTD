@@ -1,4 +1,4 @@
-/// @description Grunt
+/// @description Bug
 // You can write your code in this editor
 
 
@@ -15,11 +15,11 @@ if(!eventOver && !eventTriggered){
 	other.cameraPivotY = cam.y;
 	
 	var mob = noone;
-	for (var i = 0; i < instance_number(oMobGrunt); i++) {
-	    mob = instance_find(oMobGrunt,i);
+	for (var i = 0; i < instance_number(oMobWarriorBug); i++) {
+	    mob = instance_find(oMobWarriorBug,i);
 		if(mob.eventOwner == id) break;
 	}
-	
+	with(mob) warriorBugRoar();
 	mob.ai_start_cooldown = 0;
 }
 
