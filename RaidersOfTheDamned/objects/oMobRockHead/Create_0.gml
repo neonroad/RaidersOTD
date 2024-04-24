@@ -41,6 +41,7 @@ attack_range = 64;
 ai_start_cooldown = 0;
 
 look_speed = 0.4;
+bloodColor = make_color_rgb(95, 85, 106);
 
 ableToDamage = false;
 doorLeaningOn = noone; 

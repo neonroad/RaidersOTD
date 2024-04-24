@@ -7,7 +7,7 @@ _speed = irandom_range(3,5);
 
 targetArea = inst_4380BA7; //Hardcoded, eew!
 
-image_alpha = 0.2;
+image_alpha = 0.8;
 
 
 

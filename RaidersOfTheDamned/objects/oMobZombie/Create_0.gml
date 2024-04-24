@@ -2,7 +2,7 @@
 
 event_inherited()
 
-walk_speed_base = 0.2;
+walk_speed_base = 0.3;
 walk_speed = walk_speed_base;
 
 enum ZOMBIE_STATE {
@@ -33,7 +33,7 @@ damageToDo = 2;
 target = oPlayer;
 attacking = noone;
 
-contact_cooldown_max = 180;
+contact_cooldown_max = 90;
 contact_cooldown = -1;
 attack_range = 64;
 

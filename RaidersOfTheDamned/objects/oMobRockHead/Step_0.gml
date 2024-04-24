@@ -82,7 +82,7 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 			madePath = mp_grid_path(oGame.mapGrid, currentPath, x,y,target.x,target.y,true);	
 		}
 		
-		if(ds_list_size(touchingWalls) <= 0 && point_distance(x,y,target.x,target.y) < 60 && contact_cooldown < 0 && current_state == ROCK_STATE.IDLE){
+		if(ds_list_size(touchingWalls) <= 0 && point_distance(x,y,target.x,target.y) < 60 && contact_cooldown < 0 && current_state == ROCK_STATE.IDLE && target.current_state == PLAYER_STATE.PLAYING){
 			current_state = ROCK_STATE.CHARGING;
 			animVar = 0;
 			currentSprite = spRockHeadHealthyCharge;

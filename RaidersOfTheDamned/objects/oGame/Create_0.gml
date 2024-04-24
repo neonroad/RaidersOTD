@@ -59,6 +59,7 @@ roomTest = rmTutorial;
 viewportIndex = 0;
 viewCamera = view_camera[0];
 cameraSize = 240*4;
+cameraSizeCurrent = cameraSize;
 xTo = 0;
 yTo = 0;
 yIs = 0;

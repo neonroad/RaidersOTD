@@ -131,6 +131,14 @@ for (var i = 0; i < instance_number(oDecorParent); i++) {
 for (var i = 0; i < ds_list_size(decorationList); i++) {
     instance_activate_object(decorationList[|i]);
 }
+if(instance_exists(oPlayer) && (oPlayer.current_state == PLAYER_STATE.GRABBED || oPlayer.current_state == PLAYER_STATE.HURT)){
+	cameraSizeCurrent = lerp(cameraSizeCurrent,cameraSize*0.25*0.5,0.2);
+	
+}
+else
+	cameraSizeCurrent = lerp(cameraSizeCurrent,cameraSize*0.25,0.2);
+camera_set_view_size(viewCamera, cameraSizeCurrent, cameraSizeCurrent);	
+
 ds_list_clear(decorationList);
 
 

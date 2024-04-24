@@ -142,7 +142,7 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 		
 		pathfindCooldown = 10+irandom_range(-5,5);
 		//Attack
-		if(current_state == ZOMBIE_STATE.WALKING && oPlayer.iframes <= 0 && contact_cooldown <= 0 && checkLOS() && point_distance(x,y,target.x,target.y)<attack_range){
+		if(current_state == ZOMBIE_STATE.WALKING && target.iframes <= 0 && contact_cooldown <= 0 && checkLOS() && point_distance(x,y,target.x,target.y)<attack_range && target.current_state == PLAYER_STATE.PLAYING){
 			contact_cooldown = contact_cooldown_max;
 			currentSprite = chargeSprite;
 			walk_speed *= 2;
@@ -164,7 +164,7 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 		/**localTD*/;
 	}
 	
-	else if(target == noone && path_exists(currentPath)){
+	else if((current_state != ZOMBIE_STATE.DOORLEANLOOP && current_state != ZOMBIE_STATE.DOORLEANSTART) && target == noone && path_exists(currentPath)){
 		walk_speed = walk_speed_base*0.5;
 		//madePath = mp_grid_path(oGame.mapGrid, currentPath, x,y,x+irandom_range(-32*5,32*5),y+irandom_range(-32,32),true);		
 		madePath = true;
@@ -283,7 +283,7 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 	//Animation check
 	if(animVar >= sprite_get_number(currentSprite)){
 		if(current_state == ZOMBIE_STATE.CHARGING){
-			if(currentSprite != spZombieCharge || irandom(5) != 1){	
+			if(currentSprite != spZombieCharge || irandom(2) != 1){	
 				current_state = ZOMBIE_STATE.WALKING;
 				walk_speed = walk_speed_base;
 				deadSprite = spZombieDie;
