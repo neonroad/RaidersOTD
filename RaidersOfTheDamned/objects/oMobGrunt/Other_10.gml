@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description On Death
 // You can write your code in this editor
 
 if(attacking != noone){

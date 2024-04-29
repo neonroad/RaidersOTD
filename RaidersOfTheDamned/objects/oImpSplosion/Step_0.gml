@@ -25,8 +25,8 @@ if(!ds_list_empty(hitList) && timer == 60){
 		if(instance_exists(owner) && mob.id != owner.id && !mob.shootable_map[?SHOOTABLE_MAP.DEAD]){
 			
 			mob.crowdcontrol_cooldown = 5;
-			mob.shootable_map[? SHOOTABLE_MAP.HSP] += lengthdir_x(random(0.5),point_direction(x,y,mob.x,mob.y));
-			mob.shootable_map[? SHOOTABLE_MAP.VSP] += lengthdir_y(random(0.5),point_direction(x,y,mob.x,mob.y));
+			mob.shootable_map[? SHOOTABLE_MAP.HSP] += 3;
+			mob.shootable_map[? SHOOTABLE_MAP.VSP] += 3;
 			var damage = mob.object_index == oPlayer ? 1 : clamp(128-point_distance(x,y,mob.x,mob.y),1,128);
 			scDamage(mob,owner,damage,DAMAGE_TYPE.EXPLOSION);
 			
