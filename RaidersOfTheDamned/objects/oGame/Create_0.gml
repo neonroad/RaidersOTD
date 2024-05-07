@@ -60,10 +60,10 @@ viewportIndex = 0;
 viewCamera = view_camera[0];
 cameraSize = 240*4;
 cameraSizeCurrent = cameraSize;
-xTo = 0;
-yTo = 0;
-yIs = 0;
-xIs = 0;
+xTo = x;
+yTo = y;
+yIs = y;
+xIs = x;
 
 
 surface_resize(application_surface, cameraSize+1,cameraSize+1);
@@ -88,7 +88,7 @@ roomArray = [rmA1,rmB1,rmC1,rmA2,rmB2,rmC2,rmA3,rmB3,rmC3];
 decorationList = ds_list_create();
 
 
-//camera_set_view_size(view_camera[0], cameraSize,cameraSize);
+camera_set_view_size(view_camera[0], cameraSize*0.25,cameraSize*0.25);
 window_set_size(cameraSize,cameraSize);
 
 instance_create_depth(x,y,600,oDecalSurf);
