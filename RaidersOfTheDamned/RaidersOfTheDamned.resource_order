@@ -277,6 +277,7 @@
     {"name":"spr_Aura_Temp_Tile","order":1,"path":"sprites/spr_Aura_Temp_Tile/spr_Aura_Temp_Tile.yy",},
     {"name":"spWarriorBugIdleRight","order":1,"path":"sprites/spWarriorBugIdleRight/spWarriorBugIdleRight.yy",},
     {"name":"spProphetChargeE","order":4,"path":"sprites/spProphetChargeE/spProphetChargeE.yy",},
+    {"name":"spWormDogWalk","order":10,"path":"sprites/spWormDogWalk/spWormDogWalk.yy",},
     {"name":"spItemLaserPointer","order":3,"path":"sprites/spItemLaserPointer/spItemLaserPointer.yy",},
     {"name":"spUIQTEEscape","order":19,"path":"sprites/spUIQTEEscape/spUIQTEEscape.yy",},
     {"name":"snWhoosh1","order":31,"path":"sounds/snWhoosh1/snWhoosh1.yy",},

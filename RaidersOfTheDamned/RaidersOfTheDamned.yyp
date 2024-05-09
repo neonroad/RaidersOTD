@@ -324,6 +324,7 @@
     {"id":{"name":"spr_Aura_Temp_Tile","path":"sprites/spr_Aura_Temp_Tile/spr_Aura_Temp_Tile.yy",},},
     {"id":{"name":"spWarriorBugIdleRight","path":"sprites/spWarriorBugIdleRight/spWarriorBugIdleRight.yy",},},
     {"id":{"name":"spProphetChargeE","path":"sprites/spProphetChargeE/spProphetChargeE.yy",},},
+    {"id":{"name":"spWormDogWalk","path":"sprites/spWormDogWalk/spWormDogWalk.yy",},},
     {"id":{"name":"spItemLaserPointer","path":"sprites/spItemLaserPointer/spItemLaserPointer.yy",},},
     {"id":{"name":"spUIQTEEscape","path":"sprites/spUIQTEEscape/spUIQTEEscape.yy",},},
     {"id":{"name":"snWhoosh1","path":"sounds/snWhoosh1/snWhoosh1.yy",},},

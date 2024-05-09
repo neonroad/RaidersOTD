@@ -55,3 +55,14 @@ function scLookAtFrom(x1,y1,x2,y2){
 	
 	return old_angleFacing-angleFacing;
 }
+
+function checkLOS(){
+	var wall = collision_line(x,y,target.x,target.y,oWall, false,true);	
+	if(wall != noone){
+		if(variable_instance_exists(wall, "open"))
+			if(wall.open) return true;
+	
+		return false;
+	}
+	return true;
+}

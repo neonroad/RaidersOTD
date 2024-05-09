@@ -4,16 +4,7 @@
 
 event_inherited();
 
-function checkLOS(){
-	var wall = collision_line(x,y,target.x,target.y,oWall, false,true);	
-	if(wall != noone){
-		if(variable_instance_exists(wall, "open"))
-			if(wall.open) return true;
-	
-		return false;
-	}
-	return true;
-}
+
 
 
 ai_start_cooldown-= localTD;

@@ -13,7 +13,7 @@ scale = 1;
 image_xscale = scale;
 image_yscale = scale;
 idleSprite = spWormDogIdle;
-walkSprite = spWormDogIdle;
+walkSprite = spWormDogWalk;
 deadSprite = spWormDogCharge;
 chargeSprite = spWormDogCharge;
 attackSprite = spWormDogAttack;
@@ -36,10 +36,10 @@ attack_range = 44;
 
 ai_start_cooldown = 0;
 
-look_speed = 0.4;
+look_speed = 0.7;
 
 ableToDamage = false;
-lungeSpeed = 3;
+lungeSpeed = 6;
 growlTimeCurrent = 0;
 growlTimeMax = 45;
 bloodColor = make_color_rgb(190, 188, 190);

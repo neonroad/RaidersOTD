@@ -5,4 +5,4 @@ owner = noone;
 image_speed = 0.5;
 
 image_xscale = 0.6; //0.5 origin
-image_yscale = image_xscale;
+image_yscale = 0.5;

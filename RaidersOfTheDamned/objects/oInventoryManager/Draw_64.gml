@@ -2,7 +2,7 @@
 
 animVar += 0.2;
 
-draw_sprite_ext(spBullet,0,0,0,500,500,0,c_black,screenAlpha);
+draw_sprite_ext(spBullet,0,0,0,1000,1000,0,c_black,screenAlpha);
 
 var guiMouseX = device_mouse_x_to_gui(0);
 var guiMouseY = device_mouse_y_to_gui(0)
@@ -11,7 +11,7 @@ if(global.inventoryOpen){
 	screenAlpha = lerp(screenAlpha,0.8,0.05);
 	spdY = lerp(spdY, (packTargetY-packY)*0.25, 0.1);
 	packY += spdY;
-	draw_sprite_ext(spUIInventoryPack,0,0,packY,1,1,0,c_white,1);
+	draw_sprite_ext(spUIInventoryPack,0,0,packY,4,4,0,c_white,1);
 	
 }
 else{
@@ -19,21 +19,21 @@ else{
 	
 	spdY = lerp(spdY, (room_height-packY)*0.5, 0.2);
 	packY += spdY;
-	draw_sprite_ext(spUIInventoryPack,0,0,packY,1,1,0,c_white,1);
+	draw_sprite_ext(spUIInventoryPack,0,0,packY,4,4,0,c_white,1);
 }
 
-draw_sprite(spUIInventoryGrid, 0, 0,packY);
+draw_sprite_ext(spUIInventoryGrid, 0, 0,packY,4,4,0,c_white,1);
 
-var gridStartX = 40;
-var gridStartY = packY+51
-var gridPaddingX = 39;
-var gridPaddingY = 39;
+var gridStartX = 40*4;
+var gridStartY = packY+(51*4)
+var gridPaddingX = 39*4;
+var gridPaddingY = 39*4;
 
 for (var i = 0; i < array_length(invArray); i++) {
     if(invArray[i].inventoryX >= 0 && invArray[i].inventoryY >= 0){
-		draw_sprite_ext(invArray[i].inventorySprite,0,gridStartX+(gridPaddingX*invArray[i].inventoryX) + (sprite_get_width(invArray[i].inventorySprite)*0.5), gridStartY+(gridPaddingY*invArray[i].inventoryY) + (sprite_get_height(invArray[i].inventorySprite)*0.5), 1, 1, invArray[i].invDir * 90, c_white, 1);	
+		draw_sprite_ext(invArray[i].inventorySprite,0,gridStartX+(gridPaddingX*invArray[i].inventoryX) + (sprite_get_width(invArray[i].inventorySprite)*0.5*4), gridStartY+(gridPaddingY*invArray[i].inventoryY) + (sprite_get_height(invArray[i].inventorySprite)*0.5*4), 4, 4, invArray[i].invDir * 90, c_white, 1);	
 		
-		if(invArray[i].stackAmount > 1) draw_text(gridStartX+(gridPaddingX*invArray[i].inventoryX) + (sprite_get_width(invArray[i].inventorySprite)*0.5), gridStartY+(gridPaddingY*invArray[i].inventoryY) + (sprite_get_height(invArray[i].inventorySprite)*0.5), invArray[i].stackAmount);
+		if(invArray[i].stackAmount > 1) draw_text_transformed(gridStartX+(gridPaddingX*invArray[i].inventoryX) + (sprite_get_width(invArray[i].inventorySprite)*0.5*4), gridStartY+(gridPaddingY*invArray[i].inventoryY) + (sprite_get_height(invArray[i].inventorySprite)*0.5*4), invArray[i].stackAmount, 4, 4, 0);
 	}
 }
 
@@ -58,7 +58,7 @@ if(global.inventoryOpen){
 				cellGridY = yy;
 			}
 			 
-			draw_sprite_ext(spUIInventoryCell, 0, cellX, cellY, 1, 1, 0, c_white, tempGrid[# xx, yy] || inventoryGrid[# xx, yy] != -1 ? 1 : 0);
+			draw_sprite_ext(spUIInventoryCell, 0, cellX, cellY, 4, 4, 0, c_white, tempGrid[# xx, yy] || inventoryGrid[# xx, yy] != -1 ? 1 : 0);
 		}
 	}
 	
@@ -68,7 +68,7 @@ if(global.inventoryOpen){
 	if(instance_exists(holding)){
 		//Attempting to place
 		if(cellOnTopX >= 0 && cellOnTopY >= 0){
-			draw_sprite_ext(holding.inventorySprite, 0, cellOnTopX + sprite_get_width(holding.inventorySprite)*0.5, cellOnTopY + sprite_get_height(holding.inventorySprite)*0.5, 1, 1, holding.invDir*90, c_black, 1);
+			draw_sprite_ext(holding.inventorySprite, 0, cellOnTopX + sprite_get_width(holding.inventorySprite)*0.5*4, cellOnTopY + sprite_get_height(holding.inventorySprite)*0.5*4, 4, 4, holding.invDir*90, c_black, 1);
 			
 			ds_grid_set_grid_region(tempGrid,holding.gridSpace,0,0,ds_grid_width(holding.gridSpace), ds_grid_height(holding.gridSpace),cellGridX, cellGridY);
 		}
@@ -78,7 +78,7 @@ if(global.inventoryOpen){
 			cursorSprite = spUICursorGrab;	
 		}
 		
-		draw_sprite_ext(holding.inventorySprite, 0, guiMouseX - sprite_get_width(holding.inventorySprite)*0, guiMouseY - sprite_get_height(holding.inventorySprite)*0, 1, 1, holding.invDir*90, c_white, 1);
+		draw_sprite_ext(holding.inventorySprite, 0, guiMouseX - sprite_get_width(holding.inventorySprite)*0, guiMouseY - sprite_get_height(holding.inventorySprite)*0, 4, 4, holding.invDir*90, c_white, 1);
 		draw_sprite(cursorSprite,animVar, guiMouseX, guiMouseY);
 		
 		if((cellOnTopX != -1 && cellOnTopY != -1) && mouse_check_button_pressed(mb_left)){

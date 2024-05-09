@@ -55,10 +55,6 @@ else
 */
 
 target = instance_nearest(x,y, oPlayer);
-if(!instance_exists(target) || target.shootable_map[? SHOOTABLE_MAP.DEAD]){
-	instance_destroy();
-	exit;
-}
 
 //on miss?
 
@@ -83,15 +79,14 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 	
 	currentPath = path_add();
 	if(target != noone){
-		if(prevX == x && prevY == y){
-			mp_grid_path(oGame.mapGrid, currentPath, x,y,x+irandom_range(-32,32),y+irandom_range(-32,32),true);		
-		}
-		else{
-			mp_grid_path(oGame.mapGrid, currentPath, x,y,target.x+irandom_range(-32,32),target.y+irandom_range(-32,32),true);	
-		}
+		
+		if((prevX == x && prevY == y) || !mp_grid_path(oGame.mapGrid, currentPath, x,y,target.x,target.y,true))
+			if(current_state != DOG_STATE.ATTACKING){
+				scLookAt(target.x, target.y);
+			}
 		
 		//Attack
-		if(current_state == DOG_STATE.WALKING && oPlayer.iframes <= 0 && contact_cooldown <= 0 && collision_line(x,y,target.x,target.y,oWall, false,true) == noone && point_distance(x,y,target.x,target.y)<attack_range){
+		if(current_state == DOG_STATE.WALKING && oPlayer.iframes <= 0 && contact_cooldown <= 0 && checkLOS() && point_distance(x,y,target.x,target.y)<attack_range){
 			contact_cooldown = contact_cooldown_max;
 			currentSprite = chargeSprite;
 			walk_speed = 0;
@@ -110,8 +105,8 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 	
 	if(currentPath != noone){
 		
-		if(target != noone)
-			scLookAt(path_get_point_x(currentPath,1), path_get_point_y(currentPath,1));
+		if(target != noone && current_state != DOG_STATE.ATTACKING)
+			//scLookAt(path_get_point_x(currentPath,1), path_get_point_y(currentPath,1));
 		
 		currentSpeed = walk_speed;
 		shootable_map[?SHOOTABLE_MAP.HSP] = lengthdir_x(currentSpeed, angleFacing);
@@ -126,6 +121,7 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 		
 		if(current_state != DOG_STATE.CHARGING && current_state != DOG_STATE.ATTACKING && (shootable_map[? SHOOTABLE_MAP.HSP] != 0 || shootable_map[? SHOOTABLE_MAP.VSP] != 0)){
 			current_state = DOG_STATE.WALKING;	
+			currentSprite = walkSprite;
 		}
 		
 	}
@@ -174,28 +170,26 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 			
 			if(ent_hit.id == target.id && current_state == DOG_STATE.ATTACKING && oPlayer.iframes <= 0 && oPlayer.current_state == PLAYER_STATE.PLAYING){
 				
-				animVar = 0;
-				currentSprite = attackSprite;
-				walk_speed = 0;
-				ent_hit.iframes = 90;
+				ent_hit.iframes =180;
 				ent_hit.current_state = scStateManager(PLAYER_STATE.HURT, ent_hit);
 				attacking = ent_hit.id;
 				audio_play_sound_at(snChomp, x, y, 0, 60, 240, 0.5, false, 2);
 				
-				current_state = DOG_STATE.IDLE;	
+
 				if(!scDamage(attacking,id,1,DAMAGE_TYPE.BULLET)) audio_play_sound_at(snHurt1, attacking.x, attacking.y, 0, 60, 240, 0.5, false, 2);
 			
 				attacking.current_state = scStateManager(PLAYER_STATE.ENDSTUN,attacking);
-				walk_speed = walk_speed_base;
-			
+				
 				scParticleBurst(attacking.x,attacking.y,attacking.x+10,attacking.y+10,15,1,100,attacking.bloodColor);
 				attacking = noone;
-				damageTaken *= 0.5;
-				deadSprite = spWormDogDie1;
 				break;
 			}
 		}	
 		
+	}
+	
+	if(current_state == DOG_STATE.ATTACKING && !ds_list_empty(touchingWalls)){
+		scDamage(id,id,10,DAMAGE_TYPE.MELEE);	
 	}
 	
 	if(invisible){
@@ -246,25 +240,6 @@ currently_attacking = current_state == DOG_STATE.ATTACKING;
 
 
 contact_cooldown-= localTD;
-
-if(instance_place(x,y,oWall) == noone){
-	prevX = x;
-	prevY = y;
-}
-else if(!ignoreWalls){
-	var attempts = 0;
-	while(attempts < 100 && instance_place(x,y,oWall) != noone){
-		x = lerp(x,prevX,0.1);
-		y = lerp(y,prevY,0.1);
-		attempts++;
-		if(x == prevX && y == prevY){
-			x++;
-			y++;
-			prevX = x;
-			prevY = y;
-		}
-	}
-}
 
 scCheckCollision2();
 
