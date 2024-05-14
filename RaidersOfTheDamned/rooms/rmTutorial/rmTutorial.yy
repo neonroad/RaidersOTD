@@ -83,7 +83,6 @@
     {"name":"inst_19B7C63E","path":"rooms/rmTutorial/rmTutorial.yy",},
     {"name":"inst_75FA9CEF","path":"rooms/rmTutorial/rmTutorial.yy",},
     {"name":"inst_25AF665D","path":"rooms/rmTutorial/rmTutorial.yy",},
-    {"name":"inst_36A868BE","path":"rooms/rmTutorial/rmTutorial.yy",},
   ],
   "isDnd": false,
   "layers": [
@@ -197,9 +196,6 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_25AF665D","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oItemSpawner","path":"objects/oItemSpawner/oItemSpawner.yy",},"properties":[
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oItemSpawner","path":"objects/oItemSpawner/oItemSpawner.yy",},"propertyId":{"name":"itemToSpawn","path":"objects/oItemSpawner/oItemSpawner.yy",},"value":"ITEMS.AMMO_2",},
           ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1694.0,"y":1655.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_36A868BE","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oItemSpawner","path":"objects/oItemSpawner/oItemSpawner.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oItemSpawner","path":"objects/oItemSpawner/oItemSpawner.yy",},"propertyId":{"name":"itemToSpawn","path":"objects/oItemSpawner/oItemSpawner.yy",},"value":"ITEMS.WEAPON_PISTOL",},
-          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1898.0,"y":1708.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Instances","depth":300,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_7F2B4136","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oParticleSystem","path":"objects/oParticleSystem/oParticleSystem.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},

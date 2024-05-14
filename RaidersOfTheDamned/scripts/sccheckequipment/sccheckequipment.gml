@@ -22,8 +22,8 @@ function scCheckEquipment(){
 	}
 	
 	//Infinite pistol ammo
-	if(weaponEquipped == ITEMS.WEAPON_PISTOL)
-		oPlayer.bullets = 99;
+	//if(weaponEquipped == ITEMS.WEAPON_PISTOL)
+	//	oPlayer.bullets = 99;
 	
 	if(laserpointer && (laserObj == noone || changed) ){
 		show_debug_message(laserObj);

@@ -1,7 +1,7 @@
 /// @description  
 screenAlpha = 0;
 
-packY = 250;
+packY = display_get_gui_height()*1.5;
 packTargetY = 0;
 spdY = 0;
 

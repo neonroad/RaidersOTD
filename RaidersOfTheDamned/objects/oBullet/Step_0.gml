@@ -59,7 +59,7 @@ if(!hit){
 				if(mob.id != owner.id &&  owner.shootable_map[? SHOOTABLE_MAP.FRIENDLY] != mob.shootable_map[? SHOOTABLE_MAP.FRIENDLY] && (!mob.shootable_map[?SHOOTABLE_MAP.DEAD] || mob.justDied) && mob.iframes <= 0 && !mob.invuln){
 					
 					if(bulletType == ITEMS.WEAPON_PISTOL){
-						damage *= 0.25;	
+						damage *= 0.5;	
 						if(mob.object_index == oMobRockHead && mob.current_state == ROCK_STATE.ATTACKING){
 							var bullet = instance_create_depth(x0,y0,0,oBullet);	
 							bullet.targetAngle = -targetAngle+random_range(-5,5);

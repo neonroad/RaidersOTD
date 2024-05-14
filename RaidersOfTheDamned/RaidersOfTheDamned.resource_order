@@ -56,6 +56,7 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings": [
+    {"name":"oBugBossSpawner","order":53,"path":"objects/oBugBossSpawner/oBugBossSpawner.yy",},
     {"name":"spProphetIdleDie","order":10,"path":"sprites/spProphetIdleDie/spProphetIdleDie.yy",},
     {"name":"oDecorationDumpster","order":3,"path":"objects/oDecorationDumpster/oDecorationDumpster.yy",},
     {"name":"oDecorationTrashCan","order":2,"path":"objects/oDecorationTrashCan/oDecorationTrashCan.yy",},
@@ -438,6 +439,7 @@
     {"name":"scRollCheck","order":16,"path":"scripts/scRollCheck/scRollCheck.yy",},
     {"name":"spProphetChargeS","order":6,"path":"sprites/spProphetChargeS/spProphetChargeS.yy",},
     {"name":"oDoor","order":34,"path":"objects/oDoor/oDoor.yy",},
+    {"name":"spInteractZombieCorpse","order":9,"path":"sprites/spInteractZombieCorpse/spInteractZombieCorpse.yy",},
     {"name":"oGrenade","order":23,"path":"objects/oGrenade/oGrenade.yy",},
     {"name":"spProphetAlarmedIdle","order":13,"path":"sprites/spProphetAlarmedIdle/spProphetAlarmedIdle.yy",},
     {"name":"spWall","order":5,"path":"sprites/spWall/spWall.yy",},

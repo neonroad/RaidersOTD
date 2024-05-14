@@ -79,11 +79,12 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 	
 	currentPath = path_add();
 	if(target != noone){
-		
-		if((prevX == x && prevY == y) || !mp_grid_path(oGame.mapGrid, currentPath, x,y,target.x,target.y,true))
+		var pathCreated = mp_grid_path(oGame.mapGrid, currentPath, x,y,target.x,target.y,true);
+		if((prevX == x && prevY == y) || !pathCreated)
 			if(current_state != DOG_STATE.ATTACKING){
 				scLookAt(target.x, target.y);
 			}
+		if(pathCreated && current_state != DOG_STATE.ATTACKING) scLookAt(path_get_point_x(currentPath,1), path_get_point_y(currentPath,1));
 		
 		//Attack
 		if(current_state == DOG_STATE.WALKING && oPlayer.iframes <= 0 && contact_cooldown <= 0 && checkLOS() && point_distance(x,y,target.x,target.y)<attack_range){
@@ -105,8 +106,8 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 	
 	if(currentPath != noone){
 		
-		if(target != noone && current_state != DOG_STATE.ATTACKING)
-			//scLookAt(path_get_point_x(currentPath,1), path_get_point_y(currentPath,1));
+		//if(target != noone && current_state != DOG_STATE.ATTACKING)
+		//	//
 		
 		currentSpeed = walk_speed;
 		shootable_map[?SHOOTABLE_MAP.HSP] = lengthdir_x(currentSpeed, angleFacing);
@@ -119,7 +120,7 @@ if(control && !shootable_map[? SHOOTABLE_MAP.DEAD]){
 			if(abs(walk_speed)<1) walk_speed = 0;
 		}
 		
-		if(current_state != DOG_STATE.CHARGING && current_state != DOG_STATE.ATTACKING && (shootable_map[? SHOOTABLE_MAP.HSP] != 0 || shootable_map[? SHOOTABLE_MAP.VSP] != 0)){
+		if(current_state != BOG_STATE.WALKING && current_state != DOG_STATE.CHARGING && current_state != DOG_STATE.ATTACKING && (shootable_map[? SHOOTABLE_MAP.HSP] != 0 || shootable_map[? SHOOTABLE_MAP.VSP] != 0)){
 			current_state = DOG_STATE.WALKING;	
 			currentSprite = walkSprite;
 		}
@@ -189,7 +190,12 @@ if(!shootable_map[?SHOOTABLE_MAP.DEAD]){
 	}
 	
 	if(current_state == DOG_STATE.ATTACKING && !ds_list_empty(touchingWalls)){
-		scDamage(id,id,10,DAMAGE_TYPE.MELEE);	
+		for (var i = 0; i < ds_list_size(touchingWalls); i++) {
+		    if(touchingWalls[| i].object_index != oDoorSliding || (touchingWalls[| i].object_index == oDoorSliding && !touchingWalls[| i].open)){
+				scDamage(id,id,10,DAMAGE_TYPE.MELEE);
+				break;
+			}
+		}	
 	}
 	
 	if(invisible){

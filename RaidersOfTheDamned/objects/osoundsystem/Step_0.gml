@@ -23,7 +23,7 @@ if(!audio_is_playing(current_song)){
 		exit;
 	}
 	else if(oPlayer.shootable_map[? SHOOTABLE_MAP.HEALTH] == 1 && oPlayer.healthIllusion <= 0){
-		current_song = audio_play_sound(snMusicLowHP, 30, false);	
+		//current_song = audio_play_sound(snMusicLowHP, 30, false);	
 		//exit;
 	}
 	else if(room == rmA1){

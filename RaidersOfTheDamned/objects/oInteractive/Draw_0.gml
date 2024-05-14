@@ -11,6 +11,11 @@ switch (interactType) {
 	case INTERACTABLES.LOCKER:
         sprite_index = spInteractLocker;
         break;
+	case INTERACTABLES.ZOMBIECORPSE:
+		if(sprite_index != spInteractZombieCorpse)
+			image_index = irandom(sprite_get_number(sprite_index));
+		sprite_index = spInteractZombieCorpse;
+		break;
     default:
         sprite_index = spInteractShovelMound;
         break;
@@ -40,12 +45,18 @@ if(touchingPlayer != noone){
 		case INTERACTABLES.WEAPONBOX:
 			currentlyInteracting = true;
 			other.interactAvailable = true;
-			dropWeaponItem();
+			dropHealthItem();
 			break;
 		case INTERACTABLES.LOCKER:
 			if(interactable){
 				scInteractAvailable();
 				dropAmmoItem();
+			}
+			break;
+		case INTERACTABLES.ZOMBIECORPSE:
+			if(interactable){
+				scInteractAvailable();
+				dropAmmoItemSmart();
 			}
 			break;
 	}

@@ -9,7 +9,7 @@ var guiMouseY = device_mouse_y_to_gui(0)
 
 if(global.inventoryOpen){
 	screenAlpha = lerp(screenAlpha,0.8,0.05);
-	spdY = lerp(spdY, (packTargetY-packY)*0.25, 0.1);
+	spdY = lerp(spdY, (packTargetY-packY)*0.05, 0.2);
 	packY += spdY;
 	draw_sprite_ext(spUIInventoryPack,0,0,packY,4,4,0,c_white,1);
 	
@@ -17,8 +17,7 @@ if(global.inventoryOpen){
 else{
 	screenAlpha = lerp(screenAlpha,0,0.05);
 	
-	spdY = lerp(spdY, (room_height-packY)*0.5, 0.2);
-	packY += spdY;
+	packY = lerp(packY, display_get_gui_height()*1.5, 0.1);
 	draw_sprite_ext(spUIInventoryPack,0,0,packY,4,4,0,c_white,1);
 }
 

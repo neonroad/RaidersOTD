@@ -81,6 +81,7 @@
     "IDEVersion": "2023.11.1.129",
   },
   "resources": [
+    {"id":{"name":"oBugBossSpawner","path":"objects/oBugBossSpawner/oBugBossSpawner.yy",},},
     {"id":{"name":"spProphetIdleDie","path":"sprites/spProphetIdleDie/spProphetIdleDie.yy",},},
     {"id":{"name":"oDecorationDumpster","path":"objects/oDecorationDumpster/oDecorationDumpster.yy",},},
     {"id":{"name":"oDecorationTrashCan","path":"objects/oDecorationTrashCan/oDecorationTrashCan.yy",},},
@@ -500,6 +501,7 @@
     {"id":{"name":"snMusicBattle","path":"sounds/snMusicBattle/snMusicBattle.yy",},},
     {"id":{"name":"spProphetChargeS","path":"sprites/spProphetChargeS/spProphetChargeS.yy",},},
     {"id":{"name":"oDoor","path":"objects/oDoor/oDoor.yy",},},
+    {"id":{"name":"spInteractZombieCorpse","path":"sprites/spInteractZombieCorpse/spInteractZombieCorpse.yy",},},
     {"id":{"name":"oGrenade","path":"objects/oGrenade/oGrenade.yy",},},
     {"id":{"name":"spProphetAlarmedIdle","path":"sprites/spProphetAlarmedIdle/spProphetAlarmedIdle.yy",},},
     {"id":{"name":"spWall","path":"sprites/spWall/spWall.yy",},},
