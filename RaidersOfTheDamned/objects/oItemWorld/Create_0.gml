@@ -11,6 +11,7 @@ interacted = false;
 stackAmount = 1;
 stackMax = 1;
 keyItem = false;
+image_speed = 0;
 
 switch (itemID) {
     case ITEMS.WEAPON_PISTOL:
@@ -48,6 +49,11 @@ switch (itemID) {
 		stackAmount = 16;
 	    stackMax = 64;
 	    break;
+	case ITEMS.HEALTH_1:
+        sprite_index = spItemHealth;
+		image_index = 0;
+		itemName = "Pistol";
+        break;
     
 }
 inventorySprite = scGetInventorySprite(itemID, id);

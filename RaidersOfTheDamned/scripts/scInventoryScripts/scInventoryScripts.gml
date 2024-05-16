@@ -19,6 +19,9 @@ function scGetInventorySprite(objectEnum, itemID){
 		case ITEMS.WEAPON_RIFLE:
 			return spINVShotgun;
 			break;
+		case ITEMS.HEALTH_1:
+	        return spINVHealth1;
+	        break;
 	}
 }
 function scGetGridSpace(objectEnum, itemID){
@@ -55,6 +58,7 @@ function scGetGridSpace(objectEnum, itemID){
 		case ITEMS.AMMO_1:
 		case ITEMS.AMMO_2:
 		case ITEMS.AMMO_3:
+		case ITEMS.HEALTH_1:
 			var grid = ds_grid_create(1,1);
 			ds_grid_clear(grid, itemID);
 			return grid;

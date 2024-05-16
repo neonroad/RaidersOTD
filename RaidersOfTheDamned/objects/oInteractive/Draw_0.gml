@@ -43,9 +43,10 @@ if(touchingPlayer != noone){
 			dropItem();
 			break;
 		case INTERACTABLES.WEAPONBOX:
-			currentlyInteracting = true;
-			other.interactAvailable = true;
-			dropHealthItem();
+			if(interactable){
+				scInteractAvailable();
+				dropHealthItem();
+			}
 			break;
 		case INTERACTABLES.LOCKER:
 			if(interactable){

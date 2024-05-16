@@ -45,13 +45,14 @@ function dropItem(){
 }
 
 function dropHealthItem(){
-	if(other.interacted && currentlyInteracting){
+	if(interacted && interactable){
+		scInteractRemove();
 		image_index = 1;
 		interactable = false;
 		var item = layer_sequence_create("ItemsAssets",x+16,y+16,sqItemBounce);
-		var newItem = instance_create_layer(x,y,"Items",oItem);
-		newItem.itemEnum = ITEMS.HEALTH_1;
+		var newItem = instance_create_layer(x,y,"Items",oItemWorld, {itemID : ITEMS.HEALTH_1});
 		var itemSeq = layer_sequence_get_instance(item);
+		sequence_instance_override_object(itemSeq,oItemWorld,newItem);
 	}
 }
 

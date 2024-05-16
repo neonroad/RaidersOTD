@@ -78,7 +78,7 @@ if(global.inventoryOpen){
 		}
 		
 		draw_sprite_ext(holding.inventorySprite, 0, guiMouseX - sprite_get_width(holding.inventorySprite)*0, guiMouseY - sprite_get_height(holding.inventorySprite)*0, 4, 4, holding.invDir*90, c_white, 1);
-		draw_sprite(cursorSprite,animVar, guiMouseX, guiMouseY);
+		draw_sprite_ext(cursorSprite,animVar, guiMouseX, guiMouseY,4,4,0,c_white,1);
 		
 		if((cellOnTopX != -1 && cellOnTopY != -1) && mouse_check_button_pressed(mb_left)){
 			if(scInventoryAttemptToPlace(holding, cellGridX, cellGridY)){
@@ -111,7 +111,7 @@ if(global.inventoryOpen){
 	}
 	else{
 		cursorSprite = spUICursorPoint;
-		draw_sprite(cursorSprite,animVar, guiMouseX, guiMouseY);
+		draw_sprite_ext(cursorSprite,animVar, guiMouseX, guiMouseY,4,4,0,c_white,1);
 		
 		if(mouse_check_button_pressed(mb_left)){
 			if(cellGridX >= 0 && cellGridY >= 0 && inventoryGrid[# cellGridX, cellGridY] != -1){
