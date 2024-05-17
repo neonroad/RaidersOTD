@@ -30,7 +30,7 @@ var gridPaddingY = 39*4;
 
 for (var i = 0; i < array_length(invArray); i++) {
     if(invArray[i].inventoryX >= 0 && invArray[i].inventoryY >= 0){
-		draw_sprite_ext(invArray[i].inventorySprite,0,gridStartX+(gridPaddingX*invArray[i].inventoryX) + (sprite_get_width(invArray[i].inventorySprite)*0.5*4), gridStartY+(gridPaddingY*invArray[i].inventoryY) + (sprite_get_height(invArray[i].inventorySprite)*0.5*4), 4, 4, invArray[i].invDir * 90, c_white, 1);	
+		draw_sprite_ext(invArray[i].inventorySprite,0,gridStartX+(gridPaddingX*invArray[i].inventoryX) + (sprite_get_width(invArray[i].inventorySprite)*0.5*4.5), gridStartY+(gridPaddingY*invArray[i].inventoryY) + (sprite_get_height(invArray[i].inventorySprite)*0.5*4.5), 4, 4, invArray[i].invDir * 90, c_white, 1);	
 		
 		if(invArray[i].stackAmount > 1) draw_text_transformed(gridStartX+(gridPaddingX*invArray[i].inventoryX) + (sprite_get_width(invArray[i].inventorySprite)*0.5*4), gridStartY+(gridPaddingY*invArray[i].inventoryY) + (sprite_get_height(invArray[i].inventorySprite)*0.5*4), invArray[i].stackAmount, 4, 4, 0);
 	}
@@ -129,6 +129,14 @@ if(global.inventoryOpen){
 					}
 				}
 				scInventoryPlaceInWorld(holding);
+				
+			}
+		}
+		
+		if(mouse_check_button_pressed(mb_right)){
+			if(cellGridX >= 0 && cellGridY >= 0 && inventoryGrid[# cellGridX, cellGridY] != -1){
+				var using = inventoryGrid[# cellGridX, cellGridY];
+				using.use(using,oPlayer);
 				
 			}
 		}

@@ -12,6 +12,9 @@ stackAmount = 1;
 stackMax = 1;
 keyItem = false;
 image_speed = 0;
+use = function(var1, var2){
+	//nothing by default	
+}
 
 switch (itemID) {
     case ITEMS.WEAPON_PISTOL:
@@ -52,8 +55,23 @@ switch (itemID) {
 	case ITEMS.HEALTH_1:
         sprite_index = spItemHealth;
 		image_index = 0;
-		itemName = "Pistol";
-        break;
+		itemName = "Bandage";
+		use = function(itemMap, owner){
+			if(owner.shootable_map[?SHOOTABLE_MAP.HEALTH] == owner.shootable_map[?SHOOTABLE_MAP.HEALTH_START]){
+				audio_play_sound(snError, 12, false);
+			
+				return;
+			}
+		
+			owner.shootable_map[? SHOOTABLE_MAP.HEALTH] ++;
+	
+			if(itemID == ITEMS.HEALTH_2) owner.shootable_map[? SHOOTABLE_MAP.HEALTH] = owner.shootable_map[? SHOOTABLE_MAP.HEALTH_START];
+			part_emitter_region(global.particleSystem, global.emitter, bbox_left,bbox_right,bbox_top,bbox_bottom, ps_shape_rectangle, ps_distr_linear);
+			part_emitter_burst(global.particleSystem, global.emitter, oParticleSystem.particle_healPart, 5);
+			audio_play_sound(snHeal, 6, false);
+			with(owner.invObj) instance_destroy(scInventoryRemove(itemMap));
+		}
+		break;
     
 }
 inventorySprite = scGetInventorySprite(itemID, id);

@@ -73,6 +73,13 @@ function dropAmmoItemSmart(){
 	if(interacted && interactable){
 		scInteractRemove();
 		interactable = false;
+		if(ds_list_size(oPlayer.weaponList) == 0){
+			var item = layer_sequence_create("ItemsAssets",x+16,y+16,sqItemBounce);
+			var newItem = instance_create_layer(x,y,"Items",oItemWorld, {itemID : ITEMS.AMMO_1});
+			var itemSeq = layer_sequence_get_instance(item);
+			sequence_instance_override_object(itemSeq,oItemWorld,newItem);	
+			return;
+		}
 		var selectedWep = oPlayer.weaponList[| irandom(ds_list_size(oPlayer.weaponList)-1)];
 		var item = layer_sequence_create("ItemsAssets",x+16,y+16,sqItemBounce);
 		var newItem = instance_create_layer(x,y,"Items",oItemWorld, {itemID : selectedWep[? "BULLET_TYPE"]});
