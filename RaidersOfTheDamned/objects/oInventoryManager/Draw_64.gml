@@ -58,6 +58,37 @@ if(global.inventoryOpen){
 			}
 			 
 			draw_sprite_ext(spUIInventoryCell, 0, cellX, cellY, 4, 4, 0, c_white, tempGrid[# xx, yy] || inventoryGrid[# xx, yy] != -1 ? 1 : 0);
+			if((hoveringCell || hoveringOver == inventoryGrid[# cellGridX, cellGridY]) && inventoryGrid[# cellGridX, cellGridY] != -1){
+				hoveringOver = inventoryGrid[# cellGridX, cellGridY];
+			}
+			else if(hoveringCell && inventoryGrid[# cellGridX, cellGridY] == -1) hoveringOver = noone;
+				
+			
+		}
+	}
+	
+	for (var yy = 0; yy < ds_grid_height(inventoryGrid); yy++) {
+	    for (var xx = 0; xx < ds_grid_width(inventoryGrid); xx++) {
+		    var cellX = gridStartX+(xx*gridPaddingX);
+			var cellY = gridStartY+(yy*gridPaddingY);
+			var cellBBoxRight = cellX + gridPaddingX;
+			var cellBBoxBottom = cellY + gridPaddingY;
+			var hoveringCell = guiMouseX >= cellX && guiMouseX < cellBBoxRight && guiMouseY >= cellY && guiMouseY < cellBBoxBottom;
+			
+			
+			var tempcellGridX = xx;
+			var tempcellGridY = yy;
+			
+			 
+			draw_sprite_ext(spUIInventoryCell, 0, cellX, cellY, 4, 4, 0, c_white, tempGrid[# xx, yy] || inventoryGrid[# xx, yy] != -1 ? 1 : 0);
+			var cellColor = c_white;
+			if((hoveringOver == inventoryGrid[# tempcellGridX, tempcellGridY]) && inventoryGrid[# tempcellGridX, tempcellGridY] != -1){
+				cellColor = inventoryGrid[# tempcellGridX, tempcellGridY].canUse ? c_yellow : c_gray;
+				
+				draw_sprite_ext(spUIInventoryCell, 0, cellX, cellY, 4, 4, 0, cellColor, instance_exists(holding) ? 0 : 1);
+			}
+				
+			
 		}
 	}
 	

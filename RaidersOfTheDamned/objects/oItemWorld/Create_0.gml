@@ -12,6 +12,7 @@ stackAmount = 1;
 stackMax = 1;
 keyItem = false;
 image_speed = 0;
+canUse = false;
 use = function(var1, var2){
 	//nothing by default	
 }
@@ -56,6 +57,7 @@ switch (itemID) {
         sprite_index = spItemHealth;
 		image_index = 0;
 		itemName = "Bandage";
+		canUse = true;
 		use = function(itemMap, owner){
 			if(owner.shootable_map[?SHOOTABLE_MAP.HEALTH] == owner.shootable_map[?SHOOTABLE_MAP.HEALTH_START]){
 				audio_play_sound(snError, 12, false);

@@ -13,5 +13,6 @@ invArray = [];
 animVar = 0;
 
 holding = noone;
+hoveringOver = noone;
 
 cursorSprite = spUICursorPoint;
